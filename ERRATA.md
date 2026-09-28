@@ -25,8 +25,8 @@ Environnement : Node.js 24.19.0, dépendances verrouillées du projet fourni.
 
 ## Ce qui reste à éprouver dans les conditions réelles
 
-- Exécution du scénario Make sur données fictives, parcours Notion/Gmail et retour d’un lecteur sans assistance. Les procédures ont été confrontées aux documentations officielles, pas jouées dans des comptes connectés.
-- Captures authentiques datées des interfaces Make et Notion : non ajoutées. Des captures anciennes ou une interface inventée auraient été trompeuses ; les gestes et résultats attendus sont décrits dans les livres.
+- Complément de composition du 28 septembre 2026 (pack livres 0.8) : trois détails de captures Notion authentiques sont intégrés au tome 1. Une base privée fictive « Mes dossiers de test », la fiche SL-001 et ses quatre choix de statut ont été créés ; le changement de statut a été vérifié dans l’interface. Les libellés français de la procédure ont été corrigés. Cela ne valide pas encore le parcours complet Drive–Notion–Gmail ni sa réalisation sans assistance par un lecteur.
+- Le scénario Make et ses captures authentiques restent à réaliser : l’accès au compte n’a pas pu être établi à l’issue de la connexion Google. Aucun scénario exécuté ni aucune interface Make générée n’est présenté comme une preuve. Le retour d’un lecteur sans assistance reste également attendu.
 - Essais sur téléphones iOS et Android, Expo Go, EAS, TestFlight et Google Play. Utiliser le [protocole mobile](recette/TEST_MOBILE.md) : il reste à renseigner.
 - Contrôle dans KDP Previewer et épreuve papier : non effectués. Les contrôles locaux de format et de polices ne valent pas acceptation par KDP.
 - Le visuel existant de couverture a été conservé. Son fichier export est à 300 ppp, mais agrandir une image ne crée pas de détail photographique supplémentaire. L’épreuve papier doit confirmer sa qualité perçue.
