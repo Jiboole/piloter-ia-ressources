@@ -12,7 +12,7 @@ Vous n'avez pas besoin de Git pour ce premier lancement. Le livre introduit Git 
 
 ## 2. Vérifier Node et ouvrir le terminal
 
-Installez Node depuis https://nodejs.org/en/download et VS Code depuis https://code.visualstudio.com/download . La configuration testée ici utilise **Node 24.19.0**, Expo **57.0.25**, React Native **0.86.3** et React **19.2.3**. Le fichier package-lock.json fixe les dépendances de cet instant. Il ne garantit pas leur innocuité ni leur compatibilité avec tous les appareils futurs.
+Installez Node depuis https://nodejs.org/en/download et VS Code depuis https://code.visualstudio.com/download. **Node 22.18 ou plus récent** permet d’exécuter directement les tests TypeScript utilisés ici. La configuration de référence testée utilise **Node 24.19.0**, Expo **57.0.25**, React Native **0.86.3** et React **19.2.3**. Le fichier package-lock.json fixe les dépendances de cet instant. Il ne garantit pas leur innocuité ni leur compatibilité avec tous les appareils futurs.
 
 Dans VS Code, ouvrez **Terminal > Nouveau terminal**. Sur Windows, choisissez **Command Prompt / Invite de commandes** dans le sélecteur du terminal pour éviter de modifier la politique d'exécution PowerShell. Sur macOS, le terminal intégré zsh convient.
 
@@ -23,17 +23,17 @@ node --version
 npm --version
 ```
 
-La première commande doit afficher v24.19.0 pour reproduire exactement l'environnement de référence. Si elle est inconnue, fermez puis rouvrez VS Code après l'installation. Ne poursuivez pas avec une suite de commandes correctives trouvées au hasard.
+La première commande doit afficher une version au moins égale à 22.18. Il n’est pas nécessaire de remplacer une version compatible pour obtenir exactement v24.19.0. Si elle est inconnue, fermez puis rouvrez VS Code après l’installation. Ne poursuivez pas avec une suite de commandes correctives trouvées au hasard.
 
 ## 3. Installer puis contrôler
 
 ```sh
 npm ci
-node --test core.test.ts
+node --test core.test.ts suivi.test.ts edition.test.ts
 npx tsc --noEmit
 ```
 
-npm ci télécharge les dépendances définies par le verrouillage. Attendez la fin. Le test doit annoncer 12 réussites et zéro échec. La vérification TypeScript réussie revient à l'invite sans diagnostic d'erreur. Conservez les messages en cas de problème, en retirant les chemins personnels avant partage.
+npm ci télécharge les dépendances définies par le verrouillage. Attendez la fin. La suite doit annoncer **22 réussites et zéro échec** : 12 pour le noyau, 7 pour le suivi, 3 pour les conventions de l’écran. Vous pouvez aussi exécuter chaque fichier séparément en suivant les chapitres. La vérification TypeScript réussie revient à l’invite sans diagnostic d’erreur ; sa configuration concerne l’application, pas les fichiers de tests. Un avertissement MODULE_TYPELESS_PACKAGE_JSON peut être affiché sans faire échouer les tests. Conservez les messages en cas de problème, en retirant les chemins personnels avant partage.
 
 Les alertes npm doivent être examinées : notre environnement de préparation signalait 11 alertes modérées. N'exécutez pas une réparation forcée sans comprendre ses changements.
 
@@ -49,7 +49,7 @@ Laissez le terminal ouvert. Reliez ordinateur et téléphone au même réseau. S
 
 **Arrêt utile :** si Expo Go indique que le SDK du projet n'est pas pris en charge, relevez sa version et le message. N'effacez pas package-lock.json pour tenter votre chance. Consultez les [consignes Expo](https://docs.expo.dev/get-started/start-developing/) et l'[état du pack](../ERRATA.md). Les essais iOS/Android de ce pack sont en attente : cette procédure reste à confirmer sur les appareils du test.
 
-La [matrice officielle SDK 57](https://docs.expo.dev/versions/v57.0.0/) indique Node minimum 22.13.x et iOS 16.4 minimum. Notre choix de Node 24.19.0 sert également à exécuter les tests TypeScript. Le minimum théorique et la version effectivement testée ne sont pas la même information.
+La [matrice officielle SDK 57](https://docs.expo.dev/versions/v57.0.0/) indique Node minimum 22.13.x et iOS 16.4 minimum. Le seuil 22.18 retenu pour cet atelier permet en plus l’exécution TypeScript native sans option expérimentale. Le minimum d’Expo et la version de référence effectivement testée ne sont pas la même information.
 
 ## 5. Premier résultat observable
 

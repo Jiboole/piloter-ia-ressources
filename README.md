@@ -2,7 +2,7 @@
 
 Ressources pédagogiques de Jean-Baptiste Borgeais. Cas fictifs uniquement.
 
-**État : pack de travail associé aux PDF « Référence 2026, version 0.4 ». Les ouvrages sont en consolidation.** Ce dépôt ne signifie pas que les essais sur téléphone ou avec des lecteurs ont déjà été validés.
+**État : ressources de l’édition 2026 révisée après l’audit du 28 septembre (révision documentaire 0.7).** Le code, les tests et les livres sont alignés. Les essais sur téléphone, dans Make et avec des lecteurs restent des validations distinctes : ce dépôt ne les déclare pas acquis.
 
 ## Commencez ici
 
@@ -10,6 +10,7 @@ Vous n'avez pas besoin d'un compte GitHub pour consulter ces pages ou téléchar
 
 - [Tome 1 : préparer votre projet](tome-01/mon-projet.md).
 - [Tome 2 : organiser le circuit](tome-02/mon-circuit.md).
+- [Tome 2 : construire le scénario A, étape par étape](tome-02/ASSEMBLER_SCENARIO_A.md).
 - [Tome 3 : installer le projet fourni](tome-03/DEMARRER.md).
 - [Correspondance des mots entre les tomes](CORRESPONDANCES.md).
 - [Protocole de test iOS et Android](recette/TEST_MOBILE.md).
@@ -24,4 +25,4 @@ Aucune clé API ni aucun abonnement ne sont fournis. Le projet mobile n'appelle 
 
 Ne publiez jamais un secret, une donnée client ou une capture de compte dans une issue GitHub. Pour un problème, donnez la version du pack, l'étape, le résultat attendu et le message exact après retrait de toute information privée.
 
-Les livres complets et les échanges des lecteurs ne sont pas publiés ici. Les droits sur les ouvrages restent réservés ; la visibilité publique du dépôt ne constitue pas une licence de republication des livres.
+Les livres complets et les échanges des lecteurs ne sont pas publiés ici. Le mode opératoire du scénario A est fourni comme ressource compagnon. Les droits sur les ouvrages restent réservés ; la visibilité publique du dépôt ne constitue pas une licence de republication des livres.

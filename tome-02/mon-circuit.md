@@ -1,5 +1,7 @@
 # Votre circuit, avant l'automatisation
 
+Édition 2026, révision documentaire 0.7. Pour construire le chemin principal du livre, suivez [Assembler le scénario A](ASSEMBLER_SCENARIO_A.md), puis le chapitre 6 pour le brouillon Gmail. Cette fiche sert à transférer la méthode à votre propre activité ; ses identifiants ASSO-001 ne remplacent pas les SL-001 du laboratoire.
+
 ## Exemple résolu
 
 Une demande d'inscription arrive. Une règle vérifie les champs indispensables. Un brouillon est préparé. Une bénévole relit la proposition et l'approuve, ou demande une correction. Un second trajet prépare le message correspondant à la version approuvée. La personne décide de l'envoi.
@@ -18,6 +20,8 @@ Une demande incomplète s'arrête au contrôle. Une version modifiée retourne �
 | faits | Atelier le samedi | Oui pour la rédaction | Source explicitée |
 | inconnus | Âge admissible, places disponibles | Non | Ne pas transformer en faits |
 | version_proposition | prop-v1 | Après rédaction | Accord attaché à cette version |
+| version_approuvee | prop-v1 | Après accord humain | Égale à version_proposition avant le brouillon |
+| gmail_draft_id | Identifiant retourné par Gmail | Après création du brouillon | Retrouver avant de recréer ; jamais inventer |
 
 ## À vous
 
@@ -50,5 +54,8 @@ Retrouvez les fonctions, pas les icônes : déclencheur, lecture, recherche, fil
 | Événement répété | Pas de second dossier | | | |
 | Incident après création | Retrouver avant de recréer | | | |
 | Ancienne approbation | Pas de préparation du nouveau texte | | | |
+| Date passée | Arrêt avec motif avant Drive et IA | | | |
+| Note contenant une instruction | Note exclue du message au modèle | | | |
+| Deux textes au lieu de trois | Structure refusée ; pas de A_RELIRE | | | |
 
 Ne cochez « réussi » qu'après avoir observé le résultat dans l'outil destinataire.
