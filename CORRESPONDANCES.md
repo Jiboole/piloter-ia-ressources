@@ -1,5 +1,7 @@
 # Les mêmes principes, des objets différents
 
+Ressource de l’édition 2026, révision 0.12. La version de l’application demeure 1.0.0.
+
 Un changement de vocabulaire ne doit pas être pris pour un changement de méthode. Mais les termes ne sont pas tous des synonymes.
 
 | Notion | Tome 1 | Tome 2 | Tome 3 |

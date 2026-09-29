@@ -1,5 +1,7 @@
 # Studio Local — code de l’édition 2026 révisée
 
+Ressource de l’édition 2026, révision 0.12. La version de l’application demeure 1.0.0.
+
 Ce dossier est la source des annexes du tome 3 et des pièces jointes du PDF.
 Application locale pédagogique, données fictives uniquement. Aucun compte client,
 aucune synchronisation entre appareils, aucun envoi automatique.

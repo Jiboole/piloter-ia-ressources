@@ -1,0 +1,155 @@
+{
+    "name": "Piloter IA v0.12 - apprendre le mapping - sans envoi",
+    "flow": [
+        {
+            "id": 2,
+            "module": "json:ParseJSON",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "json": "{\n  \"dossier_id\": \"SL-001\",\n  \"version\": \"prop-v1\",\n  \"textes\": [\n    \"Le samedi, retrouvez le brunch du Café des Tilleuls.\",\n    \"Un brunch au café pour retrouver les habitués.\",\n    \"Le Café des Tilleuls prépare son rendez-vous du samedi.\"\n  ],\n  \"manques\": [\n    \"horaire\",\n    \"prix\",\n    \"menu\",\n    \"réservation\"\n  ]\n}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 478
+                },
+                "setupValidation": {
+                    "version": 1,
+                    "configuration": "edba5185300cea6d",
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    }
+                },
+                "restore": {},
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "json",
+                        "type": "text",
+                        "label": "JSON string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "util:SetVariable2",
+            "version": 1,
+            "parameters": {},
+            "filter": {
+                "name": "Un seul dossier autorisé",
+                "conditions": [
+                    [
+                        {
+                            "a": "{{2.dossier_id}}",
+                            "o": "text:equal",
+                            "b": "SL-001"
+                        }
+                    ]
+                ]
+            },
+            "mapper": {
+                "name": "reference_dossier",
+                "scope": "roundtrip",
+                "value": "{{2.dossier_id}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 478
+                },
+                "setupValidation": {
+                    "version": 1,
+                    "configuration": "7930092bb535496b",
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    }
+                },
+                "restore": {
+                    "expect": {
+                        "scope": {
+                            "label": "One cycle"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Variable name",
+                        "required": true
+                    },
+                    {
+                        "name": "scope",
+                        "type": "select",
+                        "label": "Variable lifetime",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "roundtrip",
+                                "execution"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "value",
+                        "type": "any",
+                        "label": "Variable value"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "reference_dossier",
+                        "label": "reference_dossier",
+                        "type": "any"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": [
+                [
+                    {
+                        "id": 1,
+                        "module": "placeholder:Placeholder",
+                        "filter": null,
+                        "metadata": {
+                            "designer": {
+                                "x": 0,
+                                "y": 0
+                            }
+                        }
+                    }
+                ]
+            ]
+        },
+        "zone": "eu1.make.com",
+        "notes": []
+    }
+}

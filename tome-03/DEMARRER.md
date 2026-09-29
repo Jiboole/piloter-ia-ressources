@@ -1,5 +1,7 @@
 # Ouvrir l'application sans recopier le code
 
+Ressource de l’édition 2026, révision 0.12. La version de l’application demeure 1.0.0.
+
 ## Ce que vous obtenez
 
 Un atelier local pour créer une demande fictive, la faire relire, approuver une révision et exporter les données. Aucun envoi automatique, aucune synchronisation entre appareils, aucun service IA à payer pour exécuter ce code. Ce n'est pas encore une application validée pour les boutiques.
