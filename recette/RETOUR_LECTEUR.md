@@ -1,6 +1,6 @@
 # Retour lecteur
 
-Ressource de l’édition 2026, révision 0.12. La version de l’application demeure 1.0.0.
+Ressource de l’édition 2026, révision 0.13. La version de l’application demeure 1.0.0.
 
 Ce test évalue le livre, pas vos compétences. Vous pouvez arrêter à tout moment.
 

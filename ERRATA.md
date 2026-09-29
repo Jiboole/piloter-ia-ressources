@@ -1,6 +1,12 @@
 # Errata et état des vérifications
 
-Édition 2026, révision courante **0.12 du 29 septembre 2026**, commune aux livres et aux ressources. Le numéro de l’application d’atelier reste **1.0.0**, identique dans `app.json` et `package.json`. Ces numéros identifient des objets différents : la révision des ressources et la version de l’application.
+Édition 2026, révision courante **0.13 du 29 septembre 2026**, commune aux livres et aux ressources. Le numéro de l’application d’atelier reste **1.0.0**, identique dans `app.json` et `package.json`. Ces numéros identifient des objets différents : la révision des ressources et la version de l’application.
+
+## Révision 0.13 : essai du scénario B et captures
+
+Le tome 2 montre trois recadrages authentiques du scénario B, lancé manuellement avec huit dossiers fictifs. Un seul a franchi le filtre et produit un brouillon Gmail, une mise à jour dans Dossiers et une ligne Journal. Les sept autres lignes ont été refusées ; lors d’un second passage inchangé, aucun nouveau brouillon n’a été créé. Le champ `draftId` renvoyé par Gmail a été distingué de l’identifiant du message. La preuve et ses limites sont décrites dans [l’essai observé du scénario B](tome-02/SCENARIO_B_VERIFICATION.md).
+
+Les connexions Sheets, Drive et Gmail ont également réussi trois vérifications isolées. Le scénario A complet, une panne entre Gmail et Sheets et les exécutions simultanées restent sans validation. Les planifications sont désactivées et aucun message n’a été envoyé. Les trois couvertures ont été recomposées selon la pagination de cette révision.
 
 ## Révision 0.12 : compléments Make et dernier audit
 
@@ -35,7 +41,7 @@ Le gain moyen de **15 %** du tome 1 est conservé après vérification de la pub
 - Les livres intègrent les correspondances d’états, une passerelle vers le code, les prérequis et coûts datés, un index, des URL imprimables et des QR ciblés par tome. Les doublons signalés ont été fusionnés sans supprimer leurs éléments uniques.
 - La composition a été revue : apostrophes hors code, tableaux, marges miroir, titres solidaires, flèches, liens, notes et polices incorporées. Les couvertures sont recalculées à la pagination effective.
 
-## Vérifications locales — état 0.12
+## Vérifications locales — socle 0.12 conservé dans la révision 0.13
 
 Environnement : Node.js 24.19.0, dépendances verrouillées du projet fourni.
 

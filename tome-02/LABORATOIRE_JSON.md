@@ -1,6 +1,6 @@
 # Premier laboratoire JSON dans Make
 
-Édition 2026, révision 0.12. Complément du chapitre 4 du tome 2. Procédure vérifiée le 29 septembre 2026 pour le module Parse JSON seul. Les libellés d’interface peuvent évoluer.
+Édition 2026, révision 0.13. Complément du chapitre 4 du tome 2. Procédure vérifiée le 29 septembre 2026 pour le module Parse JSON seul. Les libellés d’interface peuvent évoluer.
 
 ## Objectif
 
@@ -41,7 +41,7 @@ Si l’exécution se termine sans sortie, vérifier le point de départ : un mod
 
 La réussite de Parse JSON ne remplace pas les contrôles de structure du chapitre 5, notamment le nombre de textes. Un JSON à deux textes peut être lisible, mais ne satisfait pas notre contrat de trois propositions. Le contrôle suivant doit refuser cette progression. Une proposition contenant un prix inventé doit aussi être refusée sur le fond, même si le JSON est valide.
 
-Les connexions Google, l’appel au modèle, les brouillons Gmail et les neuf cas de recette du circuit complet restent à vérifier séparément. Aucune réussite de ce laboratoire ne clôt ces essais.
+Les connexions Google et la création d’un brouillon dans le scénario B ont été essayées séparément depuis ce laboratoire. L’appel au modèle, le scénario A complet et ses neuf cas de recette restent à vérifier. Aucune réussite de Parse JSON seul ne clôt ces essais.
 
 ## Prolongement : mapping et filtre
 

@@ -1,6 +1,6 @@
 # Votre circuit, avant l'automatisation
 
-Édition 2026, révision 0.12. Pour construire le chemin principal du livre, suivez [Assembler le scénario A](ASSEMBLER_SCENARIO_A.md), puis le chapitre 6 pour le brouillon Gmail. Pour apprendre les gestes Make sans connexion externe, ouvrez le [laboratoire JSON et mapping](LABORATOIRE_JSON.md). Les [neuf événements fictifs](CAS_LABORATOIRE.md) servent ensuite aux essais du circuit. Cette fiche sert à transférer la méthode à votre propre activité ; ses identifiants ASSO-001 ne remplacent pas les SL-001 du laboratoire.
+Édition 2026, révision 0.13. Pour construire le chemin principal du livre, suivez [Assembler le scénario A](ASSEMBLER_SCENARIO_A.md), puis le chapitre 6 pour le brouillon Gmail. Le [scénario B observé](SCENARIO_B_VERIFICATION.md) montre un essai réel. Pour apprendre les gestes Make sans connexion externe, ouvrez le [laboratoire JSON et mapping](LABORATOIRE_JSON.md). Les [neuf événements fictifs](CAS_LABORATOIRE.md) servent ensuite aux essais du circuit. Cette fiche sert à transférer la méthode à votre propre activité ; ses identifiants ASSO-001 ne remplacent pas les SL-001 du laboratoire.
 
 ## Exemple résolu
 

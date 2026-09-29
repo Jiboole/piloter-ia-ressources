@@ -1,6 +1,6 @@
-# Ressource compagnon — édition 2026, révision 0.12
+# Ressource compagnon — édition 2026, révision 0.13
 
-Procédure du chapitre 5, synchronisée avec le livre. Vérification documentaire ; les connexions Google et le circuit A/B complet restent à exécuter. Aucun succès de ce circuit n’est revendiqué.
+Procédure du chapitre 5, synchronisée avec le livre. Les connexions Google ont réussi des essais isolés et le scénario B a été exécuté avec des dossiers fictifs. Le scénario A complet, ses neuf cas et sa reprise restent à exécuter ; voir [la preuve et les limites du scénario B](SCENARIO_B_VERIFICATION.md).
 
 # 05 - Assembler le circuit, de la demande à la relecture
 
@@ -177,7 +177,7 @@ Repartez d’un index et d’une feuille Dossiers vides pour cette série, mais 
 | E-008 | Résultat conforme et crédits réellement observés consignés, sans extrapolation prématurée |
 | E-009 après E-002 | Une seule ligne SL-002, reprise contrôlée vers A_RELIRE ; aucune seconde clé |
 
-**Vous avez réussi si** vous pouvez montrer les objets dans Sheets et Drive, expliquer les arrêts et retrouver l’événement dans Journal. Un dessin sans ces observations n’est pas la preuve recherchée. Les modules décrits sont documentés ; les essais dans vos comptes, leurs permissions et leurs interfaces restent à exécuter. Notez l’aide nécessaire : elle indique une amélioration à apporter au mode opératoire, pas une faute du lecteur.
+**Vous avez réussi si** vous pouvez montrer les objets dans Sheets et Drive, expliquer les arrêts et retrouver l’événement dans Journal. Un dessin sans ces observations n’est pas la preuve recherchée. Les neuf cas du scénario A restent à exécuter dans votre copie ; les essais isolés de connexion et le scénario B ne les remplacent pas. Notez l’aide nécessaire : elle indique une amélioration à apporter au mode opératoire, pas une faute du lecteur.
 
 ## Adapter les états à votre activité
 
