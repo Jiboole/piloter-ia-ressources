@@ -1,6 +1,14 @@
 # Errata et état des vérifications
 
-Édition 2026, révision documentaire **0.7 du 28 septembre 2026**. Le numéro de l’application d’atelier est **1.0.0**, identique dans `app.json` et `package.json`. Ces numéros identifient des objets différents : la révision des ressources et la version de l’application.
+Édition 2026, révision documentaire **0.8 du 29 septembre 2026**. Le numéro de l’application d’atelier est **1.0.0**, identique dans `app.json` et `package.json`. Ces numéros identifient des objets différents : la révision des ressources et la version de l’application.
+
+## Suite de l’audit du 29 septembre — pack livres 0.11
+
+Les notes de bas de page suivent désormais leur appel sans duplication. Les encadrés courts restent entiers ; les coupures du code respectent les signatures, instructions courtes et composants JSX. Le code est composé à 9 points sans modification des sources de l’application. La casse des modules Data store est harmonisée dans le guide d’assemblage.
+
+Les cinq captures authentiques sont conservées et converties en niveaux de gris sans agrandissement artificiel. Les recadrages Notion sont nettoyés. **Leur recapture à haute définition native reste ouverte** : cette révision ne constitue donc pas un BAT commercial définitif.
+
+Le gain moyen de **15 %** du tome 1 est conservé après vérification de la publication finale de Brynjolfsson, Li et Raymond, QJE 2025, sur 5 172 agents : [DOI 10.1093/qje/qjae044](https://doi.org/10.1093/qje/qjae044). Il ne faut pas lui substituer les 14 % d’une version antérieure de l’étude.
 
 ## Corrections de cette révision
 
