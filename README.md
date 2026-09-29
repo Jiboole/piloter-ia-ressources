@@ -11,6 +11,7 @@ Vous n'avez pas besoin d'un compte GitHub pour consulter ces pages ou téléchar
 - [Tome 1 : préparer votre projet](tome-01/mon-projet.md).
 - [Tome 2 : organiser le circuit](tome-02/mon-circuit.md).
 - [Tome 2 : construire le scénario A, étape par étape](tome-02/ASSEMBLER_SCENARIO_A.md).
+- [Tome 2 : premier laboratoire JSON, sans connexion externe](tome-02/LABORATOIRE_JSON.md).
 - [Tome 3 : installer le projet fourni](tome-03/DEMARRER.md).
 - [Correspondance des mots entre les tomes](CORRESPONDANCES.md).
 - [Protocole de test iOS et Android](recette/TEST_MOBILE.md).
