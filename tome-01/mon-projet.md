@@ -1,6 +1,6 @@
 # Votre premier projet
 
-Ressource de l’édition 2026, révision 0.15. La version de l’application demeure 1.0.0.
+Ressource de l’édition 2026, révision 0.16. La version de l’application demeure 1.0.0.
 
 Copiez cette page dans le traitement de texte de votre choix. Les cases ne sont pas un examen : elles aident à distinguer ce que vous savez de ce qui reste à découvrir.
 

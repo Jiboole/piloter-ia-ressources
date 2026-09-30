@@ -1,6 +1,6 @@
 # Les mêmes principes, des objets différents
 
-Ressource de l’édition 2026, révision 0.15. La version de l’application demeure 1.0.0.
+Ressource de l’édition 2026, révision 0.16. La version de l’application demeure 1.0.0.
 
 Un changement de vocabulaire ne doit pas être pris pour un changement de méthode. Mais les termes ne sont pas tous des synonymes.
 
@@ -9,7 +9,7 @@ Un changement de vocabulaire ne doit pas être pris pour un changement de métho
 | Objet suivi | Dossier SL-001 | Dossier SL-001, distinct des événements E-001 et E-003 | Demande identifiée sur un appareil |
 | Version | kit-v1 : ensemble de documents | prop-v1 : proposition de texte | révision 1 : objectif de la demande |
 | À relire | Document en attente de décision | A_RELIRE | A_RELIRE |
-| Accord | « Validé », visant une version du kit | APPROUVE, visant la proposition courante | APPROUVE, visant la révision courante |
+| Accord | « Validé pour présentation », visant une version du kit | APPROUVE, visant la proposition courante | APPROUVE, visant la révision courante |
 | Correction | À corriger | A_CORRIGER | REFUSE, puis action de révision |
 | Préparation d'un message | Brouillon Gmail | BROUILLON_PRET | Pas d'équivalent : l'application ne crée pas de message |
 

@@ -1,6 +1,6 @@
 # Essai observé du circuit A/B — 30 septembre 2026
 
-Ressource de l’édition 2026, révision 0.15. Données fictives, exécutions manuelles, planification désactivée. Les neuf événements ont été joués dans des onglets isolés avec un **JSON fourni**, puis les deux reprises et le passage au brouillon ont été vérifiés. Un dixième événement a ensuite parcouru le circuit avec une **génération OpenAI réelle via Simple text prompt**, puis un accord fictif et un brouillon Gmail.
+Ressource de l’édition 2026, révision 0.16. Données fictives, exécutions manuelles, planification désactivée. Les neuf événements ont été joués dans des onglets isolés avec un **JSON fourni**, puis les deux reprises et le passage au brouillon ont été vérifiés. Un dixième événement a ensuite parcouru le circuit avec une **génération OpenAI réelle via Simple text prompt**, puis un accord fictif et un brouillon Gmail.
 
 ## Résultats observés après correction du montage
 
@@ -29,6 +29,8 @@ Les essais antérieurs sont conservés séparément : ils ne sont pas présenté
 Dans la fenêtre du filtre, choisir **Yes** sous **Set the route as a fallback** est indispensable. Le mot **fallback** doit apparaître sur la liaison. Le nom de la route ne suffit pas. Voir les [consignes officielles Make](https://help.make.com/router).
 
 ## Génération réelle et passage au brouillon
+
+La consigne reproductible du livre fournit la valeur `dossier_id` avec la pastille du champ : `dossier_id ("[dossier_id]")`, puis `version ("prop-v1")`. Les cinq valeurs mappées sont `dossier_id`, `commerce`, `objectif`, `faits` et `inconnus`. Le filtre compare l’identifiant retourné à celui de la ligne courante. La capture de l’essai affiche la valeur SL-009 ; les crochets du modèle imprimé sont remplacés avant l’appel.
 
 Le passage E-010 / SL-009 a utilisé **OpenAI (ChatGPT, Whisper) > Simple text prompt**, modèle GPT-5 nano, sans clé personnelle. Le champ Result a été transmis à Parse JSON. Trois textes et quatre manques ont été enregistrés en A_RELIRE. Aucun horaire, prix, menu ni mode de réservation n’a été inventé dans ce résultat ; le style répétitif reste à améliorer.
 

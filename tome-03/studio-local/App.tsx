@@ -50,7 +50,7 @@ export default function App() {
       .catch(() => {
         if (active)
           setError(
-            'Lecture impossible. Donnees conservees.'
+            'Lecture impossible. Données conservées.'
           );
       });
     return () => {
@@ -140,10 +140,10 @@ export default function App() {
         Studio Local
       </Text>
       <Text>
-        Atelier local : donnees fictives uniquement.
+        Atelier local : données fictives uniquement.
       </Text>
       <Text>
-        Votre nom (declaration, pas une authentification)
+        Votre nom (déclaration, pas une authentification)
       </Text>
       <TextInput
         style={inputStyle}
@@ -159,7 +159,7 @@ export default function App() {
         accessibilityLabel="Commerce"
       />
       <Text>
-        Objectif pour une creation ou une revision
+        Objectif pour une création ou une révision
       </Text>
       <TextInput
         style={inputStyle}
@@ -168,7 +168,7 @@ export default function App() {
         multiline
         accessibilityLabel="Objectif"
       />
-      <Text>Motif de votre prochaine decision</Text>
+      <Text>Motif de votre prochaine décision</Text>
       <TextInput
         style={inputStyle}
         value={reason}
@@ -177,7 +177,7 @@ export default function App() {
         accessibilityLabel="Motif"
       />
       <Button
-        title="Creer une demande"
+        title="Créer une demande"
         disabled={disabled}
         onPress={() => act('creer', nextId(events), 1)}
       />
@@ -204,11 +204,11 @@ export default function App() {
           </Text>
           <Text>{b.objectif}</Text>
           <Text>
-            Revision {b.revision} - {b.status}
+            Révision {b.revision} - {b.status}
           </Text>
           {b.status === 'NOUVEAU' && (
             <Button
-              title="Soumettre a relecture"
+              title="Soumettre à relecture"
               disabled={disabled}
               onPress={() =>
                 act('soumettre', b.id, b.revision)
@@ -218,14 +218,14 @@ export default function App() {
           {b.status === 'A_RELIRE' && (
             <>
               <Button
-                title="Approuver cette revision"
+                title="Approuver cette révision"
                 disabled={disabled}
                 onPress={() =>
                   act('approuver', b.id, b.revision)
                 }
               />
               <Button
-                title="Refuser cette revision"
+                title="Refuser cette révision"
                 disabled={disabled}
                 onPress={() =>
                   act('refuser', b.id, b.revision)
@@ -238,8 +238,8 @@ export default function App() {
             disabled={disabled}
             onPress={() =>
               Alert.alert(
-                'Reviser ' + b.id,
-                'La nouvelle revision devra etre relue : ' +
+                'Réviser ' + b.id,
+                'La nouvelle révision devra être relue : ' +
                   objectif,
                 [
                   { text: 'Annuler', style: 'cancel' },
@@ -273,8 +273,8 @@ export default function App() {
         onPress={() => exportFile('json')}
       />
       <Text>
-        Choisissez vous-meme le destinataire dans la
-        fenetre de partage.
+        Choisissez vous-même le destinataire dans la
+        fenêtre de partage.
       </Text>
     </ScrollView>
   );

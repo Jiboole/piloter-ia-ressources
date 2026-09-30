@@ -1,12 +1,31 @@
-# Ressource compagnon — édition 2026, révision 0.15
+# Ressource compagnon — édition 2026, révision 0.16
 
-Procédure synchronisée avec le chapitre 5 du livre. Les neuf événements et reprises utilisent le JSON fourni ; un passage supplémentaire avec Simple text prompt a réellement généré puis enregistré une proposition, suivi d’un accord fictif et d’un brouillon Gmail. Aucun courriel envoyé. Voir SCENARIO_A_VERIFICATION.md pour le périmètre exact.
+Chapitre 5 du tome 2, avec schéma et paliers identiques au livre. La génération réelle et son résultat sont détaillés au chapitre 6 et dans SCENARIO_A_VERIFICATION.md. Les données de la recette sont fictives ; aucun courriel envoyé.
 
 # 05 - Assembler le circuit, de la demande à la relecture
 
 Nous allons réunir les gestes des chapitres précédents. Dans les ressources du tome, ASSEMBLER_SCENARIO_A.md reprend les étapes et LABORATOIRE_JSON.md permet de revoir le petit essai sans connexion externe. Ils complètent les explications présentes ici.
 
 Les six paliers ci-dessous sont des points d’arrêt, pas six tâches à terminer d’un seul coup. Gardez une copie après chaque résultat vérifié. À la fin, une demande fictive complète doit posséder une seule ligne de suivi, un dossier Drive et une proposition A_RELIRE. Une demande sans objectif doit s’arrêter avec une explication. Une répétition identique ne doit pas provoquer un second appel au modèle. Le scénario B du chapitre 6 préparera le brouillon seulement après une décision humaine.
+
+## Voir le scénario A entier avant d’en ouvrir les modules
+
+Le schéma ci-dessous est une **carte des responsabilités**, pas une copie de l’écran Make : une responsabilité peut nécessiter plusieurs modules et le nombre exact dépend de la variante choisie. Le scénario A s’arrête sur une proposition à relire. Le scénario B, au chapitre 6, cherchera plus tard un accord sur cette version et créera un brouillon ; aucune flèche ne mène à un envoi.
+
+Entrée Sheets → identité et recevabilité → dossier Drive → proposition versionnée → contrôle de structure → A_RELIRE → accord humain → scénario B (brouillon).
+
+**Schéma 5.1 — Le trajet d’une demande et ses arrêts contrôlés.** Lisez d’abord la branche refusée, puis la branche normale. Revenez au dessin après chaque palier ; si vous ne savez plus où se trouve votre paquet, arrêtez-vous au dernier résultat vérifié.
+
+| Palier | Module ou liaison à régler | Champ à mapper et preuve attendue |
+| --- | --- | --- |
+| 1. Reconnaître | Sheets Watch New Rows ; Data store Check the Existence of a Record ; routeur | La clé reçoit `dossier_id` de l’événement E-001. La branche Absent crée une seule ligne SL-001 ; la branche Présent ne crée pas une deuxième ligne. |
+| 2. Refuser l’incomplet | Filtre de l’objectif ; mise à jour Sheets ; Journal | L’objectif vient de la ligne reçue. Une valeur vide ou faite d’espaces mène à A_COMPLETER et à un motif lisible. |
+| 3. Conserver | Drive Create a Folder ; Sheets Update a Row | Le nom inclut `dossier_id`. La ligne Dossiers conserve le vrai `drive_folder_id`, vérifié en rouvrant le dossier. |
+| 4. Proposer | JSON Parse JSON fourni, puis Simple text prompt quand le test fonctionne | `dossier_id`, commerce, objectif, faits et inconnus viennent du dossier courant ; la version attendue est prop-v1. La sortie Result devient la chaîne du parseur. |
+| 5. Contrôler | Routeur Structure conforme ou correction ; Sheets ; Journal | Même `dossier_id`, version attendue, trois textes non vides. Sinon A_CORRIGER avec trace ; sinon A_RELIRE sans accord implicite. |
+| 6. Reprendre | Recherche de ligne et dossier existants avant toute création | E-003 ne duplique rien ; E-004 retrouve son dossier ; E-009 signale une modification à comparer avant la reprise manuelle. |
+
+Cette table indique **quel champ regarder** ; les paragraphes qui suivent montrent **où cliquer** et comment réagir à un échec. Ne recopiez pas un numéro de module d’une capture dans votre scénario : choisissez la pastille de la sortie réellement reliée à votre module. Le chapitre 6 donne la consigne complète de l’appel réel ; le palier 4 commence avec un JSON fourni pour vérifier le circuit à coût minimal.
 
 ## Préparer une petite installation dont on comprend les limites
 
@@ -16,7 +35,7 @@ Dans un nouveau classeur de test, créez trois feuilles. **Entrees** contient le
 
 Dans Entrees, utilisez ces en-têtes exacts, dans cet ordre : event_id, dossier_id, commerce, objectif, faits, inconnus, date_souhaitee, note. Pour le premier essai, ne saisissez que E-001. Le champ date_souhaitee est vide ou au format année-mois-jour, par exemple 2026-10-15. La note reste une pièce d’entrée : elle ne sera pas transmise au modèle.
 
-Dans Dossiers, créez les colonnes dossier_id, commerce, objectif, faits, inconnus, date_souhaitee, statut, motif, drive_folder_id, version_proposition, texte_brouillon, manques, decision, version_approuvee, approbateur, date_accord et gmail_draft_id. Laissez les lignes de données vides. Dans Journal, créez event_id, dossier_id, etape, resultat, motif et heure. Tous ces champs sont des textes pour cet atelier, sauf l’heure de suivi dont vous pouvez choisir l’affichage dans Sheets.
+Dans Dossiers, créez les colonnes dossier_id, commerce, objectif, faits, inconnus, date_souhaitee, statut, motif, drive_folder_id, version_proposition, texte_brouillon, manques, decision, version_approuvee, approbateur, date_accord et gmail_draft_id. Laissez les lignes de données vides. Dans Journal, créez event_id, dossier_id, etape, resultat, motif et heure. Dans les captures de la recette isolée, ces quatre derniers champs sont nommés action, statut, detail et date_trace : ils jouent respectivement les mêmes rôles. Choisissez une série de noms et mappez-la sans mélanger les deux. Tous ces champs sont des textes pour cet atelier, sauf l’heure de suivi dont vous pouvez choisir l’affichage dans Sheets.
 
 Le formulaire du chapitre 2 reste une autre porte d’entrée. Pour les essais, la feuille Entrees permet notamment une ligne vide que Forms refuserait. Après les tests, faites pointer le déclencheur vers la feuille de réponses du formulaire et remappez chaque question vers son champ. Ajoutez alors les questions « Référence de soumission » pour event_id, « Date souhaitée » pour date_souhaitee et « Note » pour note. La référence unique est fournie par l’opérateur de test ; la date reste facultative et respecte le format année-mois-jour. Remappez ces trois réponses dans le scénario. Ne faites pas passer cette convention de laboratoire pour une génération fiable d’identifiants en production.
 
@@ -82,11 +101,11 @@ La **route de repli** (fallback) n’est exécutée que si aucune des routes ord
 
 Pour la configurer, cliquez sur la liaison qui part du routeur : la fenêtre **Set up a filter** s’ouvre. Nommez la route, puis choisissez **Yes** sous **Set the route as a fallback** et enregistrez. Vérifiez que le mot **fallback** apparaît sur la liaison. Le seul nom « Demande recevable » ne change pas le comportement : une route sans condition qui n’est pas déclarée de repli peut aussi passer après une autre route. Une seule route de repli est autorisée par routeur.
 
-![Fonctions du contrôle de structure dans Make](images/Make_fonctions_structure_authentique.png)
+![Contrôle de structure Make](images/Make_fonctions_structure_authentique.png)
 
 Dans ce détail authentique d’un petit contrôle de structure, le paquet provient du module JSON 1 : textes est sa liste de propositions. length la compte ; length(trim(get(...; 1))) vérifie que le premier texte n’est pas vide. Les clés du paquet changent selon le module, pas le rôle des fonctions. Dans le circuit complet, utilisez le paquet du parseur correspondant.
 
-![Réglage authentique de la route de repli dans Make](images/Make_route_secours_authentique.png)
+![Route de repli Make](images/Make_route_secours_authentique.png)
 
 **Votre contrôle :** l’objectif «   » doit compter zéro ; une liste d’une ligne doit compter un ; deux lignes doivent déclencher le journal d’incohérence sans modifier le registre. Une capture de la configuration aide à apprendre le geste ; la valeur observée dans l’inspecteur prouve ce qui a réellement été calculé.
 
@@ -110,7 +129,7 @@ Si au moins un de ces champs diffère, utilisez une route de repli exclusive. In
 
 ## Palier 2 - Arrêter une demande incomplète avec une raison
 
-Sur le chemin du nouveau dossier, après l’index, ajoutez un routeur **Admissibilité**. Première route : la longueur de l’objectif nettoyé de ses espaces est nulle. Dans le filtre, utilisez `length(trim(objectif))`, où objectif est la valeur mappée, puis comparez à 0. Ajoutez Update a Row : numéro de ligne issu de Add a Row, statut A_COMPLETER, motif « Objectif absent : compléter la demande ». Conservez les autres valeurs. Ajoutez une ligne Journal portant le même motif, puis terminez la route.
+Sur le chemin du nouveau dossier, après l’index, ajoutez un routeur **Admissibilité**. Première route : la longueur de l’objectif nettoyé de ses espaces est nulle. Dans le filtre, utilisez `length(trim(ifempty(objectif; emptystring)))`, où objectif est la valeur mappée, puis comparez à 0. Ajoutez Update a Row : numéro de ligne issu de Add a Row, statut A_COMPLETER, motif « Objectif absent : compléter la demande ». Conservez les autres valeurs. Ajoutez une ligne Journal portant le même motif, puis terminez la route.
 
 Deuxième route : objectif non vide ET date_souhaitee vide. Elle poursuit la production. Troisième route : objectif non vide ET date présente. Convertissez cette date avec parseDate et comparez-la au début du jour de l’essai. Utilisez Europe/Paris dans les deux expressions ci-dessous : une comparaison de dates ne doit pas dépendre du fuseau implicite du compte. Une date antérieure s’arrête en A_COMPLETER, motif « Date dépassée : confirmer une nouvelle date ». Une date du jour ou future peut continuer. Une date illisible est une erreur de donnée : interrompez le test, corrigez-la, n’utilisez pas la date courante par défaut.
 
@@ -129,6 +148,7 @@ parseDate(
 
 La première transforme la date demandée en début de cette journée. La seconde transforme maintenant en début d’aujourd’hui, dans le même fuseau. Comparer directement avec now ferait rejeter une demande datée d’aujourd’hui après minuit.
 
+Voir la figure 5.4 dans le livre : le résultat vérifie la comparaison des dates au début du jour.
 
 Dans le laboratoire sans connexion externe, le 29 septembre 2026, le filtre a refusé 2000-01-01 et laissé passer 2026-09-29. Ce test confirme la comparaison ; il ne valide pas encore les connexions Google ni la suite du circuit.
 
@@ -155,7 +175,7 @@ Lorsque ce palier fonctionne, insérez **OpenAI (ChatGPT, Whisper) > Simple text
 
 Pour une configuration plus avancée avec votre propre connexion API, Generate a completion peut offrir des messages system/user et un format JSON object selon le modèle choisi. Il s’agit d’une autre configuration, dont les conditions et la facturation doivent être vérifiées dans votre compte ; ne transposez pas les champs de l’une à l’autre.
 
-Le message user contient uniquement dossier_id, objectif, faits, inconnus et la version attendue prop-v1. Mappez ces valeurs depuis l’événement contrôlé, jamais la feuille entière. **Ne mappez pas note** : E-006 et E-007 restent dans le registre d’entrée, hors de la demande envoyée. L’identifiant de brouillon, le destinataire et l’approbateur ne sont pas des sorties attendues du modèle.
+Le message de génération contient uniquement dossier_id, commerce, objectif, faits, inconnus et la version attendue prop-v1. Mappez ces valeurs depuis l’événement contrôlé, jamais la feuille entière. **Ne mappez pas note** : E-006 et E-007 restent dans le registre d’entrée, hors de la demande envoyée. L’identifiant de brouillon, le destinataire et l’approbateur ne sont pas des sorties attendues du modèle.
 
 Exécutez un seul appel. Dans sa sortie, développez la première entrée de Choices, puis Message et Content. Le contenu doit être un texte JSON commençant par une accolade. Mappez ce **Content** dans **JSON string** de Parse JSON, à la place de l’objet fixe. Ne mappez ni l’identifiant de la réponse, ni la collection Choices entière. Selon la présentation du connecteur, un champ Result peut exposer le même texte ; retenez-le seulement après avoir comparé sa valeur à Content. La documentation décrit les paramètres du module, pas une preuve de fonctionnement dans votre compte : https://apps.make.com/openai-modules.
 

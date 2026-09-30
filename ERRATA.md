@@ -1,6 +1,12 @@
 # Errata et état des vérifications
 
-Édition 2026, révision courante **0.15 du 30 septembre 2026**, commune aux livres et aux ressources. Le numéro de l’application d’atelier reste **1.0.0**, identique dans `app.json` et `package.json`. Ces numéros identifient des objets différents : la révision des ressources et la version de l’application.
+Édition 2026, révision courante **0.16 du 30 septembre 2026**, commune aux livres et aux ressources. Le numéro de l’application d’atelier reste **1.0.0**, identique dans `app.json` et `package.json`. Ces numéros identifient des objets différents : la révision des ressources et la version de l’application.
+
+## Révision 0.16 : corrections du troisième audit
+
+La consigne de génération du tome 2 renseigne explicitement la valeur `dossier_id` et décrit ses cinq champs d’entrée. Le chapitre 5 présente le circuit A et la correspondance des noms de colonnes du journal observé ; le contrôle d’objectif vide emploie une seule formule. Le tome 3 donne l’installation de Git, un schéma de l’écran et un chemin d’apprentissage sans abonnement à un agent. Les libellés français de l’application sont accentués. Les dates de clôture, l’export Android/iOS et les crédits des couvertures sont harmonisés. Les PDF de lecture et les intérieurs sont recomposés ensemble ; les couvertures sont recalculées sur la pagination effective.
+
+Le 30 septembre, la copie locale du PDF de lecture 0.15 du tome 3 comportait 143 pages (première de couverture comprise) et son texte était identique à l’intérieur KDP 0.15 de 142 pages. L’audit rapporte pourtant une lecture 0.14 : il a donc examiné une autre copie, dont l’origine exacte n’est pas établie. Vérifiez la révision affichée sur la page de copyright du fichier téléchargé.
 
 ## Révision 0.15 : corrections de l’audit et nouvelle recette isolée
 

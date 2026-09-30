@@ -1,6 +1,6 @@
 # Ouvrir l'application sans recopier le code
 
-Ressource de l’édition 2026, révision 0.15. La version de l’application demeure 1.0.0.
+Ressource de l’édition 2026, révision 0.16. La version de l’application demeure 1.0.0.
 
 ## Ce que vous obtenez
 
@@ -14,7 +14,7 @@ Vous n'avez pas besoin de Git pour ce premier lancement. Le livre introduit Git 
 
 ## 2. Vérifier Node et ouvrir le terminal
 
-Installez Node depuis https://nodejs.org/en/download et VS Code depuis https://code.visualstudio.com/download. **Node 22.18 ou plus récent** permet d’exécuter directement les tests TypeScript utilisés ici. La configuration de référence testée utilise **Node 24.19.0**, Expo **57.0.25**, React Native **0.86.3** et React **19.2.3**. Le fichier package-lock.json fixe les dépendances de cet instant. Il ne garantit pas leur innocuité ni leur compatibilité avec tous les appareils futurs.
+Installez Node depuis https://nodejs.org/en/download et VS Code depuis https://code.visualstudio.com/download. Pour le chapitre 3, installez également Git depuis https://git-scm.com/downloads en conservant les options proposées, puis fermez et rouvrez VS Code. `git --version` doit afficher une version. **Node 22.18 ou plus récent** permet d’exécuter directement les tests TypeScript utilisés ici. La configuration de référence testée utilise **Node 24.19.0**, Expo **57.0.25**, React Native **0.86.3** et React **19.2.3**. Le fichier package-lock.json fixe les dépendances de cet instant. Il ne garantit pas leur innocuité ni leur compatibilité avec tous les appareils futurs.
 
 Dans VS Code, ouvrez **Terminal > Nouveau terminal**. Sur Windows, choisissez **Command Prompt / Invite de commandes** dans le sélecteur du terminal pour éviter de modifier la politique d'exécution PowerShell. Sur macOS, le terminal intégré zsh convient.
 
@@ -65,6 +65,7 @@ Pour arrêter le serveur local, revenez au terminal et pressez **Ctrl+C**.
 |---|---|
 | package.json introuvable | Ouvrir le sous-dossier studio-local, puis un nouveau terminal |
 | node ou npm inconnu | Vérifier l'installation, puis rouvrir VS Code |
+| git inconnu | Installer Git depuis git-scm.com/downloads, puis rouvrir VS Code et relancer `git --version` |
 | PowerShell refuse npm.ps1 | Utiliser Invite de commandes, sans désactiver globalement la sécurité |
 | Téléphone ne rejoint pas le serveur | Vérifier le même Wi-Fi et un éventuel blocage du réseau |
 | SDK incompatible | Consulter l'erratum ; ne pas mélanger des versions au hasard |

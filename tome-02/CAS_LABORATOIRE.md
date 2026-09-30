@@ -1,6 +1,6 @@
 # Les neuf événements du laboratoire
 
-Édition 2026, révision 0.15. Données fictives reprises de l’annexe du tome 2.
+Édition 2026, révision 0.16. Données fictives reprises de l’annexe du tome 2.
 
 Cette annexe fournit les cas d’essai. Dans la feuille de réponses ou une feuille de laboratoire séparée, créez les colonnes `event_id`, `dossier_id`, `commerce`, `objectif`, `faits`, `inconnus`, `date_souhaitee` et `note`. Une ligne représente un événement. Les champs non indiqués ci-dessous restent vides. La feuille Dossiers conserve, elle, une seule ligne par `dossier_id`, avec le statut initial NOUVEAU et les colonnes de suivi présentées au chapitre 2.
 
