@@ -1,6 +1,6 @@
 # Recette iOS et Android — à remplir, pas encore validée
 
-Ressource de l’édition 2026, révision 0.16. La version de l’application demeure 1.0.0.
+Ressource de l’édition 2026, révision 0.17. La version de l’application demeure 1.0.0.
 
 Tester séparément les deux systèmes. Utiliser uniquement des données fictives et un destinataire de test pour les exports. Ne pas désinstaller l'application avant le test de persistance.
 

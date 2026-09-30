@@ -1,8 +1,8 @@
 # Les neuf événements du laboratoire
 
-Édition 2026, révision 0.16. Données fictives reprises de l’annexe du tome 2.
+Édition 2026, révision 0.17. Données fictives reprises de l’annexe du tome 2.
 
-Cette annexe fournit les cas d’essai. Dans la feuille de réponses ou une feuille de laboratoire séparée, créez les colonnes `event_id`, `dossier_id`, `commerce`, `objectif`, `faits`, `inconnus`, `date_souhaitee` et `note`. Une ligne représente un événement. Les champs non indiqués ci-dessous restent vides. La feuille Dossiers conserve, elle, une seule ligne par `dossier_id`, avec le statut initial NOUVEAU et les colonnes de suivi présentées au chapitre 2.
+Cette annexe fournit les cas d’essai. Dans la feuille de réponses ou une feuille de laboratoire séparée, créez les colonnes `event_id`, `dossier_id`, `commerce`, `objectif`, `faits`, `inconnus`, `date_souhaitee` et `note`. Une ligne représente un événement. Les champs non indiqués ci-dessous restent vides. La feuille Dossiers conserve, elle, une seule ligne par `dossier_id`, avec le statut initial NOUVEAU. L’atelier du chapitre 3 utilise quatre colonnes ; le scénario complet du chapitre 5 utilise les dix-sept colonnes décrites dans ce chapitre.
 
 Pour l’atelier à deux modules du chapitre 3 seulement, recopiez chaque dossier une fois dans Dossiers. Pour le scénario complet du chapitre 5, repartez d’une feuille Dossiers vide et d’un index de test vide ; la création sera effectuée par le scénario. E-003 ne crée donc pas une seconde ligne SL-001. Le cas incomplet E-002 se saisit directement dans la feuille de laboratoire si le formulaire empêche une soumission sans objectif. On éprouve volontairement le contrôle du scénario, pas seulement celui du formulaire.
 

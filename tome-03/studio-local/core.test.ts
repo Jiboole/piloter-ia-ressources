@@ -132,3 +132,31 @@ test('refus et nouvelle proposition', () => {
   );
   assert.equal(replay(changed)[0].status, 'A_RELIRE');
 });
+test('objectif identique ne cree pas de revision', () => {
+  assert.throws(
+    () => append(
+      review, event('reviser', { objectif: '  3 textes  ' })
+    ),
+    /Objectif inchange/
+  );
+});
+test('soumission repetee refusee', () => {
+  assert.throws(
+    () => append(review, event('soumettre')),
+    /Dossier deja soumis/
+  );
+});
+test('creation doit commencer en revision un', () => {
+  assert.throws(
+    () => replay([event('creer', {
+      revision: 2, commerce: 'Cafe', objectif: '3 textes'
+    })]),
+    /Creation attendue en revision 1/
+  );
+});
+test('identite obligatoire pour chaque evenement', () => {
+  assert.throws(
+    () => append(created, event('soumettre', { by: '  ' })),
+    /Identite manquante/
+  );
+});

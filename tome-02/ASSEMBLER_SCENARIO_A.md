@@ -1,6 +1,6 @@
-# Ressource compagnon — édition 2026, révision 0.16
+# Ressource compagnon — édition 2026, révision 0.17
 
-Chapitre 5 du tome 2, avec schéma et paliers identiques au livre. La génération réelle et son résultat sont détaillés au chapitre 6 et dans SCENARIO_A_VERIFICATION.md. Les données de la recette sont fictives ; aucun courriel envoyé.
+Chapitre 5 du tome 2, synchronisé avec le livre. Les données sont fictives ; aucun courriel n’est envoyé.
 
 # 05 - Assembler le circuit, de la demande à la relecture
 
@@ -45,7 +45,7 @@ Le champ event_id appartient à Entrees et Journal : il identifie un passage. Il
 
 Une recherche Sheets vide peut ne produire aucun paquet. Ajouter un routeur après elle ne fait pas renaître ce paquet. Pour ne pas dépendre d’une option implicite, notre montage utilise un petit **index** dans Make : une liste des identifiants dont la ligne a déjà été créée. L’index ne contient ni brief ni décision ; Sheets reste la référence du dossier.
 
-Dans Make, ouvrez Data stores et créez « SL - index laboratoire », avec un champ texte `repere`. Réservez-lui l’espace minimal proposé compatible avec votre offre. Il doit être vide, comme Dossiers. La clé de chaque entrée sera le dossier_id. La documentation de Make décrit **Check the Existence of a Record** : ce module retourne un résultat de présence même quand la clé n’existe pas. C’est précisément la différence avec une recherche sans résultat. Référence : https://help.make.com/l6du-data-stores.
+Dans Make, ouvrez Data stores et créez « SL - index laboratoire », avec un champ texte `repere`. Réservez-lui l’espace minimal proposé compatible avec votre offre. Il doit être vide, comme Dossiers. La clé de chaque entrée sera le dossier_id. Dans notre essai isolé, **Check the Existence of a Record** a fourni une valeur de présence lorsque la clé manquait, ce qui a rendu la branche Absent observable. Vérifiez ce comportement dans votre scénario avant de poursuivre. La documentation générale des Data stores est à consulter séparément : https://help.make.com/l6du-data-stores.
 
 Pourquoi accepter cette petite complication ? Elle donne au lecteur un embranchement explicite « existe / n’existe pas ». En contrepartie, il faut maintenir l’index et la feuille ensemble. Si vous importez des dossiers existants, préparez leurs clés avant l’essai. Si une panne survient entre la création de ligne et l’ajout de clé, arrêtez et réconciliez les deux. Un second registre n’élimine pas les pannes ; il rend notre choix de routage contrôlable.
 
@@ -101,11 +101,11 @@ La **route de repli** (fallback) n’est exécutée que si aucune des routes ord
 
 Pour la configurer, cliquez sur la liaison qui part du routeur : la fenêtre **Set up a filter** s’ouvre. Nommez la route, puis choisissez **Yes** sous **Set the route as a fallback** et enregistrez. Vérifiez que le mot **fallback** apparaît sur la liaison. Le seul nom « Demande recevable » ne change pas le comportement : une route sans condition qui n’est pas déclarée de repli peut aussi passer après une autre route. Une seule route de repli est autorisée par routeur.
 
-![Contrôle de structure Make](images/Make_fonctions_structure_authentique.png)
+CAPTURE_MAKE_FONCTIONS
 
 Dans ce détail authentique d’un petit contrôle de structure, le paquet provient du module JSON 1 : textes est sa liste de propositions. length la compte ; length(trim(get(...; 1))) vérifie que le premier texte n’est pas vide. Les clés du paquet changent selon le module, pas le rôle des fonctions. Dans le circuit complet, utilisez le paquet du parseur correspondant.
 
-![Route de repli Make](images/Make_route_secours_authentique.png)
+CAPTURE_MAKE_A_SECOURS
 
 **Votre contrôle :** l’objectif «   » doit compter zéro ; une liste d’une ligne doit compter un ; deux lignes doivent déclencher le journal d’incohérence sans modifier le registre. Une capture de la configuration aide à apprendre le geste ; la valeur observée dans l’inspecteur prouve ce qui a réellement été calculé.
 
@@ -131,7 +131,7 @@ Si au moins un de ces champs diffère, utilisez une route de repli exclusive. In
 
 Sur le chemin du nouveau dossier, après l’index, ajoutez un routeur **Admissibilité**. Première route : la longueur de l’objectif nettoyé de ses espaces est nulle. Dans le filtre, utilisez `length(trim(ifempty(objectif; emptystring)))`, où objectif est la valeur mappée, puis comparez à 0. Ajoutez Update a Row : numéro de ligne issu de Add a Row, statut A_COMPLETER, motif « Objectif absent : compléter la demande ». Conservez les autres valeurs. Ajoutez une ligne Journal portant le même motif, puis terminez la route.
 
-Deuxième route : objectif non vide ET date_souhaitee vide. Elle poursuit la production. Troisième route : objectif non vide ET date présente. Convertissez cette date avec parseDate et comparez-la au début du jour de l’essai. Utilisez Europe/Paris dans les deux expressions ci-dessous : une comparaison de dates ne doit pas dépendre du fuseau implicite du compte. Une date antérieure s’arrête en A_COMPLETER, motif « Date dépassée : confirmer une nouvelle date ». Une date du jour ou future peut continuer. Une date illisible est une erreur de donnée : interrompez le test, corrigez-la, n’utilisez pas la date courante par défaut.
+Construisez **quatre routes exclusives**. Route 1 : objectif absent, vers A_COMPLETER. Route 2 : objectif non vide et date_souhaitee vide, vers la production. Route 3 : objectif non vide et date présente mais antérieure à aujourd’hui, vers A_COMPLETER avec le motif « Date dépassée : confirmer une nouvelle date ». Route 4 : objectif non vide et date du jour ou future, vers la production. Pour les deux routes avec date, convertissez celle-ci avec parseDate et comparez-la au début du jour de l’essai dans Europe/Paris. Une date illisible est une erreur de donnée : interrompez le test et corrigez-la, sans lui substituer la date courante. Testez séparément les quatre cas avant Drive.
 
 ### La comparaison de dates, sans heure cachée
 
@@ -148,7 +148,7 @@ parseDate(
 
 La première transforme la date demandée en début de cette journée. La seconde transforme maintenant en début d’aujourd’hui, dans le même fuseau. Comparer directement avec now ferait rejeter une demande datée d’aujourd’hui après minuit.
 
-Voir la figure 5.4 dans le livre : le résultat vérifie la comparaison des dates au début du jour.
+CAPTURE_MAKE_DATES
 
 Dans le laboratoire sans connexion externe, le 29 septembre 2026, le filtre a refusé 2000-01-01 et laissé passer 2026-09-29. Ce test confirme la comparaison ; il ne valide pas encore les connexions Google ni la suite du circuit.
 
@@ -167,17 +167,27 @@ Immédiatement après, placez Update a Row vers Dossiers. Mappez l’identifiant
 
 Pour E-004, insérez temporairement, entre ces deux modules, un filtre qui refuse ce seul event_id. Le dossier est créé mais son identifiant n’est pas enregistré. Observez cette situation, puis retirez ce filtre de test. Avant de reprendre, cherchez le dossier dans le parent, vérifiez le nom et son contenu, puis inscrivez son identifiant dans la bonne ligne Sheets. Ne relancez pas toute la branche de création. Continuez la partie génération sur ce dossier existant avec un scénario de reprise copié, dont la première étape Search Rows lit cette ligne connue. Le chapitre 8 approfondit cette reprise contrôlée.
 
+## Point d’arrêt après les trois premiers paliers
+
+Avant d’ajouter le modèle, fermez Make puis rouvrez votre copie du scénario. Retrouvez E-001, sa ligne unique et le vrai dossier Drive. Dites à voix haute où se trouvent le numéro de ligne Sheets, la clé de l’index et l’identifiant Drive : trois identifiants, trois rôles. Si l’un manque, reprenez uniquement le palier concerné. Enregistrez une copie nommée « A — paliers 1 à 3 vérifiés » et une courte note de résultat ; il s’agit d’un point de reprise, pas d’un blueprint garanti importable.
+
+**Carte des fonctions :** `length` compte ; `trim` retire les espaces ; `ifempty` remplace l’absence ; `get(Array; 1)` lit la première ligne ; `parseDate` convertit ; `formatDate` présente une date ; `join` assemble une liste avec un séparateur. Pour chaque fonction, inspectez une vraie valeur de sortie avant de la combiner avec la suivante.
+
 ## Palier 4 - Préparer trois textes sans appel payant à l’IA
 
 Commencez avec **JSON > Parse JSON** et l’objet fixe du chapitre 4. Pour un dossier autre que SL-001, adaptez seulement dossier_id dans cet objet. La version reste prop-v1. Le but est de tester le routage et la validation sans appel d’IA facturé ; les modules restent comptés dans le quota Make.
 
-Lorsque ce palier fonctionne, insérez **OpenAI (ChatGPT, Whisper) > Simple text prompt** avant Parse JSON. La section « Un appel réel, puis un brouillon » ci-dessous donne la consigne, le mapping du champ Result et l’observation authentique. Cette variante consomme des crédits Make sans clé API personnelle. Elle ne propose pas ici de format JSON contraint : le parseur et les contrôles de structure restent indispensables. Ne connectez aucun outil d’envoi au modèle.
+Lorsque ce palier fonctionne, insérez **OpenAI (ChatGPT, Whisper) > Simple text prompt** avant Parse JSON. La consigne immédiatement ci-dessous et le mapping de Result permettent de terminer ce palier sans chercher au chapitre 6 ; l’observation authentique est commentée dans ce chapitre ultérieur. Cette variante consomme des crédits Make sans clé API personnelle. Elle ne propose pas ici de format JSON contraint : le parseur et les contrôles de structure restent indispensables. Ne connectez aucun outil d’envoi au modèle.
 
 Pour une configuration plus avancée avec votre propre connexion API, Generate a completion peut offrir des messages system/user et un format JSON object selon le modèle choisi. Il s’agit d’une autre configuration, dont les conditions et la facturation doivent être vérifiées dans votre compte ; ne transposez pas les champs de l’une à l’autre.
 
-Le message de génération contient uniquement dossier_id, commerce, objectif, faits, inconnus et la version attendue prop-v1. Mappez ces valeurs depuis l’événement contrôlé, jamais la feuille entière. **Ne mappez pas note** : E-006 et E-007 restent dans le registre d’entrée, hors de la demande envoyée. L’identifiant de brouillon, le destinataire et l’approbateur ne sont pas des sorties attendues du modèle.
+Dans **Text prompt**, saisissez la consigne suivante, puis remplacez chaque valeur entre crochets par la pastille du champ correspondant du paquet courant. Dans le trajet normal, ce paquet vient de Watch New Rows ; dans « A — reprise contrôlée », il vient de la ligne unique retrouvée par Search Rows. Vérifiez l’identifiant affiché dans l’inspecteur : il doit correspondre au dossier traité.
 
-Exécutez un seul appel. Dans sa sortie, développez la première entrée de Choices, puis Message et Content. Le contenu doit être un texte JSON commençant par une accolade. Mappez ce **Content** dans **JSON string** de Parse JSON, à la place de l’objet fixe. Ne mappez ni l’identifiant de la réponse, ni la collection Choices entière. Selon la présentation du connecteur, un champ Result peut exposer le même texte ; retenez-le seulement après avoir comparé sa valeur à Content. La documentation décrit les paramètres du module, pas une preuve de fonctionnement dans votre compte : https://apps.make.com/openai-modules.
+> Cas pédagogique fictif. Réponds uniquement avec un objet JSON valide, sans Markdown, en moins de 180 mots. Champs obligatoires : dossier_id ("[dossier_id]"), version ("prop-v1"), textes (tableau de trois chaînes), manques (tableau de chaînes). Commerce : [commerce]. Objectif : [objectif]. Faits autorisés : [faits]. Inconnus : [inconnus]. Ne les invente pas et ne promets aucun envoi. Propose trois formulations brèves et marque les inconnus par [à confirmer].
+
+Le message de génération contient uniquement dossier_id, commerce, objectif, faits, inconnus et la version attendue prop-v1. Mappez ces valeurs depuis le paquet contrôlé, jamais la feuille entière. **Ne mappez pas note** : E-006 et E-007 restent dans le registre d’entrée, hors de la demande envoyée. L’identifiant de brouillon, le destinataire et l’approbateur ne sont pas des sorties attendues du modèle.
+
+Exécutez un seul appel. Dans la sortie de **Simple text prompt**, dépliez **Result** : le texte doit commencer par une accolade. Mappez **Result** dans **JSON string** de Parse JSON, à la place de l’objet fixe. Ne cherchez pas Choices > Message > Content : ce chemin appartient à la variante **Generate a completion** avec connexion API personnelle. Vérifiez la valeur réelle dans l’inspecteur avant le parsing. Documentation du module : https://apps.make.com/openai-modules.
 
 Si la sortie contient un refus, une erreur de quota ou un JSON tronqué, arrêtez cette exécution et consignez sa cause. N’utilisez pas une ancienne réponse conservée comme si elle provenait de ce dossier. Les crédits Make et la consommation de l’API sont deux dépenses distinctes. La réussite du palier simulé ne teste ni cette connexion ni le coût réel.
 
@@ -185,9 +195,9 @@ Si la sortie contient un refus, une erreur de quota ou un JSON tronqué, arrête
 
 Après Parse JSON, ajoutez un Router avec deux routes. La première porte le filtre **Structure conforme**. Exigez l’égalité du dossier_id retourné avec le dossier courant, version égale à prop-v1, une liste textes contenant exactement trois éléments et une liste manques. Dans la structure JSON configurée, textes et manques sont des listes de textes, pas des objets libres. Contrôlez aussi que les trois textes ne sont pas vides. Les fonctions `length`, `get` et `trim` permettent respectivement de compter, de lire les éléments 1 à 3 et de retirer les espaces périphériques.
 
-Définissez la seconde route comme route de repli ; elle écrit « Structure non conforme » dans Journal, puis s’arrête. Si le parsing échoue avant le routeur, l’exécution doit rester en erreur visible et la ligne ne doit pas passer à A_RELIRE. Dans le laboratoire, inspectez cet échec et notez-le ; ne configurez pas une gestion d’erreur qui substitue automatiquement une réponse vide. Une condition qui n’a pas pu être vérifiée n’est pas une condition réussie.
+Définissez la seconde route comme route de repli. Elle écrit « Structure non conforme » dans Journal **et** met la ligne existante en A_CORRIGER, avec le motif exact « Structure non conforme ». Elle s’arrête ensuite, sans effacer drive_folder_id et sans inscrire A_RELIRE. Pour la reprendre, ouvrez la copie « A - reprise contrôlée » du palier 6, recherchez la ligne unique et réutilisez son dossier Drive existant avant de générer à nouveau. Si le parsing échoue avant le routeur, l’exécution doit rester en erreur visible et la ligne ne doit pas passer à A_RELIRE. Dans le laboratoire, inspectez cet échec et notez-le ; ne configurez pas une gestion d’erreur qui substitue automatiquement une réponse vide. Une condition qui n’a pas pu être vérifiée n’est pas une condition réussie.
 
-Pour une sortie conforme, ajoutez Update a Row vers la même ligne : version_proposition reçoit prop-v1, texte_brouillon reçoit les trois textes séparés par des retours de ligne, manques reçoit la liste lisible et statut reçoit A_RELIRE. Laissez decision, version_approuvee, approbateur, date_accord et gmail_draft_id vides. Aucun champ « approuve » fourni par le modèle n’est mappé.
+Pour une sortie conforme, ajoutez Update a Row vers la même ligne : version_proposition reçoit prop-v1, texte_brouillon reçoit `join(textes; newline)` et manques reçoit `join(manques; ", ")`. Dans le panneau de mapping, insérez la pastille **textes** fournie par Parse JSON et le mot-clé **newline** comme séparateur, sans taper les deux caractères `\n`. Ouvrez ensuite la cellule Sheets : elle doit montrer trois lignes distinctes, sans `\n` visible. Pour **manques**, utilisez la pastille de la liste et le séparateur virgule-espace et statut reçoit A_RELIRE. Laissez decision, version_approuvee, approbateur, date_accord et gmail_draft_id vides. Aucun champ « approuve » fourni par le modèle n’est mappé.
 
 Ajoutez enfin une ligne Journal : event_id, dossier_id, étape « proposition », résultat A_RELIRE et heure de l’essai. Si note n’était pas vide, le motif indique « Note d’entrée écartée » sans recopier son contenu. Ouvrez Sheets et relisez réellement les trois textes contre les faits. A_RELIRE signifie « disponible pour examen », pas « vérité vérifiée ». Un horaire inventé avec un JSON conforme doit être corrigé au chapitre 6.
 
@@ -210,7 +220,7 @@ Après E-002, conservez la ligne SL-002 et sa clé dans l’index. Ajoutez E-009
 
 ### Corriger une proposition : A_CORRIGER vers A_RELIRE
 
-Pour un dossier qui possède déjà prop-v1, recopiez son contenu et la décision précédente dans l’historique avant modification. Corrigez le brief après examen de la source. Choisissez prop-v2 ; remplacez cette valeur dans la demande, le contrôle de structure et version_proposition. Une égalité encore fixée à prop-v1 doit bloquer, pas accepter une mauvaise version.
+Avant toute reprise, notez le motif : MODIFICATION_A_EXAMINER demande de comparer des données entrantes ; Structure non conforme demande de corriger ou relancer la génération. Dans les deux cas, retrouvez la ligne et le dossier Drive existants. Pour un dossier qui possède déjà prop-v1, recopiez son contenu et la décision précédente dans l’historique avant modification. Corrigez le brief après examen de la source. Choisissez prop-v2 ; remplacez cette valeur dans la demande, le contrôle de structure et version_proposition. Une égalité encore fixée à prop-v1 doit bloquer, pas accepter une mauvaise version.
 
 Utilisez la reprise contrôlée sur le dossier existant, sans nouvelle ligne, nouvelle clé ni nouveau rangement Drive. Retirez l’accord courant : decision, version_approuvee, approbateur et date_accord sont vides. Après les contrôles, écrivez A_RELIRE. Le nouveau texte attend un nouvel accord ; il n’hérite pas de celui de prop-v1. Conservez l’identifiant du brouillon précédent pour le retrouver et le signaler à revoir, sans en créer un autre automatiquement.
 

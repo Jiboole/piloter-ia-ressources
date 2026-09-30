@@ -1,6 +1,12 @@
 # Errata et état des vérifications
 
-Édition 2026, révision courante **0.16 du 30 septembre 2026**, commune aux livres et aux ressources. Le numéro de l’application d’atelier reste **1.0.0**, identique dans `app.json` et `package.json`. Ces numéros identifient des objets différents : la révision des ressources et la version de l’application.
+Édition 2026, révision courante **0.17 du 30 septembre 2026**, commune aux livres et aux ressources. Le numéro de l’application d’atelier reste **1.0.0**, identique dans `app.json` et `package.json`. Ces numéros identifient des objets différents : la révision des ressources et la version de l’application.
+
+## Révision 0.17 : corrections du quatrième audit
+
+La page de copyright nomme désormais Le fil de la Plume, son contact et l’impression à la demande sur papier blanc. Le lieu d’édition, le prix TTC et le mois du dépôt légal attendent les valeurs définitives de l’éditeur : les fichiers restent des épreuves prépublication. Le tome 2 indique le champ `Result` du module Make, la formule d’assemblage avec un vrai retour à la ligne et le statut `A_CORRIGER` après une réponse non conforme. Ces instructions sont également reprises dans le compagnon. Le tome 3 donne la commande d’export Android et iOS rejouée avec succès et compte les vingt-six tests effectivement passés. Les dates de clôture ont été alignées sur le 30 septembre. Les liens des PDF de lecture ont été vérifiés comme cliquables ; les intérieurs imprimés n’en dépendent pas. Le papier blanc reste le seul réglage cohérent avec les dos calculés des couvertures.
+
+Les essais sur appareils et le BAT KDP restent distincts des contrôles locaux et relèvent de la validation finale.
 
 ## Révision 0.16 : corrections du troisième audit
 

@@ -1,6 +1,6 @@
 # Studio Local — code de l’édition 2026 révisée
 
-Ressource de l’édition 2026, révision 0.16. La version de l’application demeure 1.0.0.
+Ressource de l’édition 2026, révision 0.17. La version de l’application demeure 1.0.0.
 
 Ce dossier est la source des annexes du tome 3 et des pièces jointes du PDF.
 Application locale pédagogique, données fictives uniquement. Aucun compte client,
@@ -14,7 +14,7 @@ aucune synchronisation entre appareils, aucun envoi automatique.
 3. Exécuter `npm ci`, puis `node --test core.test.ts suivi.test.ts edition.test.ts`.
 4. Exécuter `npx tsc --noEmit`, puis `npx expo start` pour les essais Expo Go.
 
-Les 12 tests du noyau, les 7 tests de suivi et les 3 tests de correction sont
+Les 16 tests du noyau, les 7 tests de suivi et les 3 tests de correction sont
 distincts. Un contrôle de types ne remplace pas les essais sur appareil.
 
 ## Comprendre les fichiers

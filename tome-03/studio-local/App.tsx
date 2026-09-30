@@ -27,6 +27,34 @@ import {
 import type { Event } from './core';
 
 const KEY = 'studio-local-reference-v1';
+const statusLabel: Record<string, string> = {
+  NOUVEAU: 'Nouveau',
+  A_RELIRE: 'À relire',
+  APPROUVE: 'Approuvé',
+  REFUSE: 'Refusé'
+};
+const actionLabel: Record<Event['action'], string> = {
+  creer: 'Création',
+  soumettre: 'Soumission',
+  approuver: 'Approbation',
+  refuser: 'Refus',
+  reviser: 'Révision'
+};
+const errorLabel: Record<string, string> = {
+  'Identite manquante': 'Indiquez votre nom.',
+  'Revision perimee':
+    'Cette révision n’est plus la révision courante.',
+  'Dossier deja soumis': 'Ce dossier a déjà été soumis.',
+  'Motif requis': 'Indiquez un motif avant de décider.',
+  'Objectif requis': 'Indiquez un objectif.',
+  'Objectif inchange':
+    'Modifiez l’objectif avant de créer une révision.'
+};
+function readableError(error: unknown): string {
+  const message = error instanceof Error
+    ? error.message : 'Opération refusée';
+  return errorLabel[message] || message;
+}
 export default function App() {
   const [events, setEvents] = useState<Event[]>([]);
   const [ready, setReady] = useState(false);
@@ -82,13 +110,15 @@ export default function App() {
         setCommerce('');
         setObjectif('');
         setReason('');
+      } else if (action === 'reviser') {
+        setObjectif('');
+      } else if (
+        action === 'approuver' || action === 'refuser'
+      ) {
+        setReason('');
       }
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : 'Operation refusee'
-      );
+      setError(readableError(err));
     } finally {
       lock.current = false;
       setBusy(false);
@@ -137,7 +167,7 @@ export default function App() {
         accessibilityRole="header"
         style={{ fontSize: 25 }}
       >
-        Studio Local
+        Studio Local Mobile
       </Text>
       <Text>
         Atelier local : données fictives uniquement.
@@ -204,7 +234,7 @@ export default function App() {
           </Text>
           <Text>{b.objectif}</Text>
           <Text>
-            Révision {b.revision} - {b.status}
+            Révision {b.revision} — {statusLabel[b.status]}
           </Text>
           {b.status === 'NOUVEAU' && (
             <Button
@@ -256,7 +286,8 @@ export default function App() {
             .filter((e) => e.id === b.id)
             .map((e, i) => (
               <Text key={i} style={{ marginTop: 5 }}>
-                {e.action} - {e.by} - {e.at}{' '}
+                {actionLabel[e.action]} — {e.by}
+                {' — '}{e.at}{' '}
                 {e.reason || ''}
               </Text>
             ))}

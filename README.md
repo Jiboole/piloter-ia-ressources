@@ -2,7 +2,9 @@
 
 Ressources pédagogiques de Jean-Baptiste Borgeais. Cas fictifs uniquement.
 
-**Édition 2026 — révision 0.16, mise à jour le 30 septembre 2026.** Ce numéro identifie les livres et leurs ressources ; la version de l’application reste 1.0.0. Les laboratoires Make, les connexions Google, neuf événements du scénario A et deux reprises ont été exécutés avec des données fictives. Un passage supplémentaire avec une génération OpenAI réelle a été enregistré, relu, approuvé fictivement puis transformé en brouillon Gmail ; le second passage n’a créé aucun doublon. Aucun courriel envoyé. Les essais sur téléphone, les tests lecteurs et l’épreuve papier restent distincts de ces contrôles.
+**Édition 2026 — révision 0.17, mise à jour le 30 septembre 2026.** Ce numéro identifie les livres et leurs ressources ; la version de l’application reste 1.0.0. Les laboratoires Make, les connexions Google, neuf événements du scénario A et deux reprises ont été exécutés avec des données fictives. Un passage supplémentaire avec une génération OpenAI réelle a été enregistré, relu, approuvé fictivement puis transformé en brouillon Gmail ; le second passage n’a créé aucun doublon. Aucun courriel envoyé. Les essais sur téléphone, les tests lecteurs et l’épreuve papier restent distincts de ces contrôles.
+
+Les PDF 0.17 restent des **épreuves prépublication** : commune d’édition, prix TTC et mois/année du dépôt légal doivent encore être fixés. Les ISBN KDP gratuits restent enregistrés sous la marque « Independently published » dans le catalogue KDP ; « Le fil de la Plume » est ici le nom éditorial figurant dans le livre, pas une modification de cette donnée KDP.
 
 ## Commencez ici
 
@@ -22,7 +24,7 @@ Vous n'avez pas besoin d'un compte GitHub pour consulter ces pages ou téléchar
 - [Retour lecteur, sans données personnelles](recette/RETOUR_LECTEUR.md).
 - [Errata et état des vérifications](ERRATA.md).
 
-Le [dossier Drive historique des lecteurs](https://drive.google.com/drive/folders/17Fktek7xY9orCV4_pN9sO3QTpcoAZ4Gk) était la destination du QR code des éditions initiales ; le QR de la révision 0.16 ouvre désormais le dépôt GitHub. Ses anciens modèles ne sont pas automatiquement compatibles avec chaque édition : vérifiez la version indiquée.
+Le [dossier Drive historique des lecteurs](https://drive.google.com/drive/folders/17Fktek7xY9orCV4_pN9sO3QTpcoAZ4Gk) était la destination du QR code des éditions initiales ; le QR de la révision 0.17 ouvre désormais le dépôt GitHub. Ses anciens modèles ne sont pas automatiquement compatibles avec chaque édition : vérifiez la version indiquée.
 
 ## Sécurité et limites
 

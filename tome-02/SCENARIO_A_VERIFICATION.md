@@ -1,6 +1,6 @@
 # Essai observé du circuit A/B — 30 septembre 2026
 
-Ressource de l’édition 2026, révision 0.16. Données fictives, exécutions manuelles, planification désactivée. Les neuf événements ont été joués dans des onglets isolés avec un **JSON fourni**, puis les deux reprises et le passage au brouillon ont été vérifiés. Un dixième événement a ensuite parcouru le circuit avec une **génération OpenAI réelle via Simple text prompt**, puis un accord fictif et un brouillon Gmail.
+Ressource de l’édition 2026, révision 0.17. Données fictives, exécutions manuelles, planification désactivée. Les neuf événements ont été joués dans des onglets isolés avec un **JSON fourni**, puis les deux reprises et le passage au brouillon ont été vérifiés. Un dixième événement a ensuite parcouru le circuit avec une **génération OpenAI réelle via Simple text prompt**, puis un accord fictif et un brouillon Gmail.
 
 ## Résultats observés après correction du montage
 

@@ -1,6 +1,6 @@
 # Ouvrir l'application sans recopier le code
 
-Ressource de l’édition 2026, révision 0.16. La version de l’application demeure 1.0.0.
+Ressource de l’édition 2026, révision 0.17. La version de l’application demeure 1.0.0.
 
 ## Ce que vous obtenez
 
@@ -35,7 +35,7 @@ node --test core.test.ts suivi.test.ts edition.test.ts
 npx tsc --noEmit
 ```
 
-npm ci télécharge les dépendances définies par le verrouillage. Attendez la fin. La suite doit annoncer **22 réussites et zéro échec** : 12 pour le noyau, 7 pour le suivi, 3 pour les conventions de l’écran. Le raccourci `npm test` lance ces mêmes trois fichiers. Vous pouvez aussi exécuter chaque fichier séparément en suivant les chapitres. La vérification TypeScript réussie revient à l’invite sans diagnostic d’erreur ; sa configuration concerne l’application **et les trois fichiers de tests**. Un avertissement MODULE_TYPELESS_PACKAGE_JSON peut être affiché sans faire échouer les tests. Conservez les messages en cas de problème, en retirant les chemins personnels avant partage.
+npm ci télécharge les dépendances définies par le verrouillage. Attendez la fin. La suite doit annoncer **26 réussites et zéro échec** : 16 pour le noyau, 7 pour le suivi, 3 pour les conventions de l’écran. Le raccourci `npm test` lance ces mêmes trois fichiers. Vous pouvez aussi exécuter chaque fichier séparément en suivant les chapitres. La vérification TypeScript réussie revient à l’invite sans diagnostic d’erreur ; sa configuration concerne l’application **et les trois fichiers de tests**. Un avertissement MODULE_TYPELESS_PACKAGE_JSON peut être affiché sans faire échouer les tests. Conservez les messages en cas de problème, en retirant les chemins personnels avant partage.
 
 Les alertes npm doivent être examinées : notre environnement de préparation signalait 11 alertes modérées. N'exécutez pas une réparation forcée sans comprendre ses changements.
 
