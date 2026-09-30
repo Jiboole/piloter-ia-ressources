@@ -1,6 +1,6 @@
 # Votre premier projet
 
-Ressource de l’édition 2026, révision 0.13. La version de l’application demeure 1.0.0.
+Ressource de l’édition 2026, révision 0.15. La version de l’application demeure 1.0.0.
 
 Copiez cette page dans le traitement de texte de votre choix. Les cases ne sont pas un examen : elles aident à distinguer ce que vous savez de ce qui reste à découvrir.
 
@@ -18,6 +18,7 @@ Copiez cette page dans le traitement de texte de votre choix. Les cases ne sont 
 - Personne que je souhaite aider :
 - Situation concrète observée :
 - Difficulté exprimée dans ses mots :
+- Ma phrase-problème (personne, situation, difficulté et résultat attendu) :
 - Résultat modeste que je veux obtenir :
 - Ce qui restera décidé par une personne :
 - Informations disponibles et leur source :

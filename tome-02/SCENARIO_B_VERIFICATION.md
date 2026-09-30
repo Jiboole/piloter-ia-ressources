@@ -1,6 +1,6 @@
 # Scénario B — essai observé sur données fictives
 
-Édition 2026, révision 0.13. Complément du chapitre 6 du tome 2. Essai du 29 septembre 2026 ; planification désactivée.
+Édition 2026, révision 0.15. Complément du chapitre 6 du tome 2. Essai du 29 septembre 2026 ; planification désactivée.
 
 ## Le résultat
 

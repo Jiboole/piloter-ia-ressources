@@ -1,6 +1,6 @@
 # Premier laboratoire JSON dans Make
 
-Édition 2026, révision 0.13. Complément du chapitre 4 du tome 2. Procédure vérifiée le 29 septembre 2026 pour le module Parse JSON seul. Les libellés d’interface peuvent évoluer.
+Édition 2026, révision 0.15. Complément du chapitre 4 du tome 2. Procédure vérifiée le 29 septembre 2026 pour le module Parse JSON seul. Les libellés d’interface peuvent évoluer.
 
 ## Objectif
 

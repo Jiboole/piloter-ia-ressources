@@ -1,6 +1,6 @@
 # Votre circuit, avant l'automatisation
 
-Édition 2026, révision 0.13. Pour construire le chemin principal du livre, suivez [Assembler le scénario A](ASSEMBLER_SCENARIO_A.md), puis le chapitre 6 pour le brouillon Gmail. Le [scénario B observé](SCENARIO_B_VERIFICATION.md) montre un essai réel. Pour apprendre les gestes Make sans connexion externe, ouvrez le [laboratoire JSON et mapping](LABORATOIRE_JSON.md). Les [neuf événements fictifs](CAS_LABORATOIRE.md) servent ensuite aux essais du circuit. Cette fiche sert à transférer la méthode à votre propre activité ; ses identifiants ASSO-001 ne remplacent pas les SL-001 du laboratoire.
+Édition 2026, révision 0.15. Pour construire le chemin principal du livre, suivez [Assembler le scénario A](ASSEMBLER_SCENARIO_A.md), puis le chapitre 6 pour le brouillon Gmail. Le [scénario B observé](SCENARIO_B_VERIFICATION.md) montre un essai réel. Pour apprendre les gestes Make sans connexion externe, ouvrez le [laboratoire JSON et mapping](LABORATOIRE_JSON.md). Les [neuf événements fictifs](CAS_LABORATOIRE.md) servent ensuite aux essais du circuit. Cette fiche sert à transférer la méthode à votre propre activité ; ses identifiants ASSO-001 ne remplacent pas les SL-001 du laboratoire.
 
 ## Exemple résolu
 
@@ -49,13 +49,16 @@ Retrouvez les fonctions, pas les icônes : déclencheur, lecture, recherche, fil
 
 | Cas | Attendu | Observé | Aide nécessaire | Réussi ? |
 |---|---|---|---|---|
-| Demande complète | Proposition à relire | | | |
-| Objectif absent | Arrêt et motif | | | |
-| Événement répété | Pas de second dossier | | | |
-| Incident après création | Retrouver avant de recréer | | | |
-| Ancienne approbation | Pas de préparation du nouveau texte | | | |
-| Date passée | Arrêt avec motif avant Drive et IA | | | |
-| Note contenant une instruction | Note exclue du message au modèle | | | |
-| Deux textes au lieu de trois | Structure refusée ; pas de A_RELIRE | | | |
+| E-001 — Demande complète | Proposition A_RELIRE | | | |
+| E-002 — Objectif absent | A_COMPLETER, sans dossier Drive | | | |
+| E-003 — Événement répété | REPETITION, sans second dossier | | | |
+| E-004 — Incident après création | Retrouver le dossier Drive avant de reprendre | | | |
+| E-005 — Date passée | A_COMPLETER avant Drive et IA | | | |
+| E-006 — Instruction dans la note | Note exclue du message au modèle | | | |
+| E-007 — Contact privé inutile | Note non transmise au modèle | | | |
+| E-008 — Mesure | Crédits et durée consignés | | | |
+| E-009 — Objectif complété | A_CORRIGER, puis reprise humaine sur la même ligne | | | |
+
+Complétez ce jeu par les contre-tests : deux textes au lieu de trois (structure refusée), puis ancienne approbation (aucun nouveau brouillon). Ils ne remplacent pas E-008 et E-009.
 
 Ne cochez « réussi » qu'après avoir observé le résultat dans l'outil destinataire.

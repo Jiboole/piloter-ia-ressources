@@ -1,10 +1,10 @@
-# Ressource compagnon — édition 2026, révision 0.13
+# Ressource compagnon — édition 2026, révision 0.15
 
-Procédure du chapitre 5, synchronisée avec le livre. Les connexions Google ont réussi des essais isolés et le scénario B a été exécuté avec des dossiers fictifs. Le scénario A complet, ses neuf cas et sa reprise restent à exécuter ; voir [la preuve et les limites du scénario B](SCENARIO_B_VERIFICATION.md).
+Procédure synchronisée avec le chapitre 5 du livre. Les neuf événements et reprises utilisent le JSON fourni ; un passage supplémentaire avec Simple text prompt a réellement généré puis enregistré une proposition, suivi d’un accord fictif et d’un brouillon Gmail. Aucun courriel envoyé. Voir SCENARIO_A_VERIFICATION.md pour le périmètre exact.
 
 # 05 - Assembler le circuit, de la demande à la relecture
 
-Nous allons réunir les gestes des chapitres précédents. Le [laboratoire JSON](LABORATOIRE_JSON.md) permet de revoir le petit essai sans connexion externe.
+Nous allons réunir les gestes des chapitres précédents. Dans les ressources du tome, ASSEMBLER_SCENARIO_A.md reprend les étapes et LABORATOIRE_JSON.md permet de revoir le petit essai sans connexion externe. Ils complètent les explications présentes ici.
 
 Les six paliers ci-dessous sont des points d’arrêt, pas six tâches à terminer d’un seul coup. Gardez une copie après chaque résultat vérifié. À la fin, une demande fictive complète doit posséder une seule ligne de suivi, un dossier Drive et une proposition A_RELIRE. Une demande sans objectif doit s’arrêter avec une explication. Une répétition identique ne doit pas provoquer un second appel au modèle. Le scénario B du chapitre 6 préparera le brouillon seulement après une décision humaine.
 
@@ -20,6 +20,8 @@ Dans Dossiers, créez les colonnes dossier_id, commerce, objectif, faits, inconn
 
 Le formulaire du chapitre 2 reste une autre porte d’entrée. Pour les essais, la feuille Entrees permet notamment une ligne vide que Forms refuserait. Après les tests, faites pointer le déclencheur vers la feuille de réponses du formulaire et remappez chaque question vers son champ. Ajoutez alors les questions « Référence de soumission » pour event_id, « Date souhaitée » pour date_souhaitee et « Note » pour note. La référence unique est fournie par l’opérateur de test ; la date reste facultative et respecte le format année-mois-jour. Remappez ces trois réponses dans le scénario. Ne faites pas passer cette convention de laboratoire pour une génération fiable d’identifiants en production.
 
+Le champ event_id appartient à Entrees et Journal : il identifie un passage. Il ne figure pas dans les dix-sept colonnes de Dossiers, qui conservent l’état courant d’un même dossier.
+
 ## Rendre l’absence observable avant de chercher une ligne
 
 Une recherche Sheets vide peut ne produire aucun paquet. Ajouter un routeur après elle ne fait pas renaître ce paquet. Pour ne pas dépendre d’une option implicite, notre montage utilise un petit **index** dans Make : une liste des identifiants dont la ligne a déjà été créée. L’index ne contient ni brief ni décision ; Sheets reste la référence du dossier.
@@ -27,6 +29,18 @@ Une recherche Sheets vide peut ne produire aucun paquet. Ajouter un routeur apr�
 Dans Make, ouvrez Data stores et créez « SL - index laboratoire », avec un champ texte `repere`. Réservez-lui l’espace minimal proposé compatible avec votre offre. Il doit être vide, comme Dossiers. La clé de chaque entrée sera le dossier_id. La documentation de Make décrit **Check the Existence of a Record** : ce module retourne un résultat de présence même quand la clé n’existe pas. C’est précisément la différence avec une recherche sans résultat. Référence : https://help.make.com/l6du-data-stores.
 
 Pourquoi accepter cette petite complication ? Elle donne au lecteur un embranchement explicite « existe / n’existe pas ». En contrepartie, il faut maintenir l’index et la feuille ensemble. Si vous importez des dossiers existants, préparez leurs clés avant l’essai. Si une panne survient entre la création de ligne et l’ajout de clé, arrêtez et réconciliez les deux. Un second registre n’élimine pas les pannes ; il rend notre choix de routage contrôlable.
+
+### Choisir où chercher un dossier
+
+L’index de cet atelier est un choix de conception, pas une obligation pour toutes les activités. Il rend le résultat « absent » observable avant la recherche Sheets, mais ajoute un registre à maintenir. Comparez les solutions avant de multiplier les outils.
+
+| Solution | Ce qu’elle apporte | Limite à traiter | Quand la choisir |
+| --- | --- | --- | --- |
+| Recherche Sheets seule | Une référence unique, facile à relire | Zéro résultat peut ne produire aucun paquet ; gérer explicitement ce cas et les doublons | Petit circuit manuel ou outil qui sait produire un résultat vide explicite |
+| Index Make et Sheets | Présence booléenne puis contrôle de la ligne ; branches faciles à observer | Une panne peut désynchroniser clé et ligne ; réconciliation nécessaire | Laboratoire séquentiel du livre, avec un opérateur et un journal |
+| Base de données avec contrainte d’unicité | Identifiant unique imposé et écritures transactionnelles possibles | Configuration, sauvegarde et droits plus techniques | Plusieurs utilisateurs ou créations concurrentes ; besoin de garanties plus fortes |
+
+Limiter Search Rows à un résultat n’est pas un traitement des doublons : cela les cache. Notre limite de deux permet de refuser une ambiguïté. En production, la règle d’unicité doit être imposée par le système de référence ; une convention de nommage seule ne remplace pas cette protection.
 
 ## Assembler par petites preuves, pas par un grand dessin
 
@@ -56,6 +70,26 @@ Un blueprint est un fichier décrivant des modules, paramètres et associations.
 
 Laissez enfin la planification désactivée pendant cette construction. Vous pouvez arrêter votre séance après un palier réussi. La prochaine étape n’est pas « finir tout Make », mais ajouter la responsabilité suivante sans casser les précédentes.
 
+### Écrire une fonction dans Make
+
+Une fonction transforme une valeur : `trim` retire les espaces aux extrémités d’un texte ; `length` compte ses caractères ou les éléments d’une liste. Dans Make, la forme générale est `nom(argument; argument)`. Le point-virgule sépare les arguments : `get(liste; 1)` lit le premier élément, numéroté 1, pas 0. Ce n’est pas du texte à recopier comme une phrase.
+
+Cliquez dans le champ à renseigner pour ouvrir le panneau de mapping. Ses onglets donnent accès aux champs des modules précédents et aux fonctions. Choisissez la fonction, puis placez le curseur entre ses parenthèses et insérez le champ voulu depuis le panneau. Un champ mappé apparaît comme une pastille portant le numéro de son module. Écrire simplement le mot « objectif » ferait travailler la fonction sur ce mot, pas sur la demande reçue.
+
+Pour le contrôle de la recherche, l’agrégateur produit le champ **Array**, une liste de lignes. Dans le filtre, insérez `length`, puis la pastille Array entre les parenthèses. Choisissez l’opérateur numérique **Equal to** et la valeur 1. Sur cette route seulement, `get(Array; 1)` sélectionne la ligne unique. Pour lire une colonne, utilisez une seconde sélection de champ : par exemple `get(get(Array; 1); __ROW_NUMBER__)` pour le numéro de ligne ; les colonnes de Sheets sont aussi proposées par leur libellé dans le mapping. Vérifiez la valeur obtenue dans l’inspecteur avant toute écriture.
+
+La **route de repli** (fallback) n’est exécutée que si aucune des routes ordinaires du routeur n’est retenue. Elle recueille ici zéro ou deux résultats : ces nombres signalent une incohérence, pas une autorisation de choisir arbitrairement la première ligne. Pour un texte potentiellement vide, `length(trim(ifempty(objectif; emptystring)))` commence par remplacer une valeur absente par un texte vide, puis retire les espaces avant de compter.
+
+Pour la configurer, cliquez sur la liaison qui part du routeur : la fenêtre **Set up a filter** s’ouvre. Nommez la route, puis choisissez **Yes** sous **Set the route as a fallback** et enregistrez. Vérifiez que le mot **fallback** apparaît sur la liaison. Le seul nom « Demande recevable » ne change pas le comportement : une route sans condition qui n’est pas déclarée de repli peut aussi passer après une autre route. Une seule route de repli est autorisée par routeur.
+
+![Fonctions du contrôle de structure dans Make](images/Make_fonctions_structure_authentique.png)
+
+Dans ce détail authentique d’un petit contrôle de structure, le paquet provient du module JSON 1 : textes est sa liste de propositions. length la compte ; length(trim(get(...; 1))) vérifie que le premier texte n’est pas vide. Les clés du paquet changent selon le module, pas le rôle des fonctions. Dans le circuit complet, utilisez le paquet du parseur correspondant.
+
+![Réglage authentique de la route de repli dans Make](images/Make_route_secours_authentique.png)
+
+**Votre contrôle :** l’objectif «   » doit compter zéro ; une liste d’une ligne doit compter un ; deux lignes doivent déclencher le journal d’incohérence sans modifier le registre. Une capture de la configuration aide à apprendre le geste ; la valeur observée dans l’inspecteur prouve ce qui a réellement été calculé.
+
 ## Palier 1 - Recevoir un événement et distinguer un dossier connu
 
 Un **déclencheur** démarre une exécution à partir d’un événement ou d’un calendrier. Ici, il surveille l’arrivée de lignes, il ne relit pas automatiquement toutes les anciennes lignes.
@@ -64,7 +98,7 @@ Créez « A - Demande vers relecture ». Ajoutez **Google Sheets > Watch New Row
 
 Ajoutez **Data store > Check the Existence of a Record**, sélectionnez l’index et mappez dossier_id dans Key. Ajoutez ensuite un Router avec deux routes : **Absent**, résultat d’existence faux ; **Présent**, résultat vrai. Ce sont des valeurs booléennes, pas les textes « absent » et « présent » que nous utilisons comme étiquettes. Vérifiez les valeurs dans la sortie du module.
 
-Sur Absent, ajoutez **Google Sheets > Add a Row** vers Dossiers. Mappez les six données utiles depuis Entrees, fixez statut à NOUVEAU et laissez les champs de proposition et d’accord vides. Juste après, ajoutez **Data store > Add/Replace a Record** : Key reçoit dossier_id et repere reçoit le même identifiant. Désactivez Overwrite an existing record : une clé déjà présente doit provoquer une erreur visible. N’activez pas un remplacement de ligne Sheets ; c’est une création. Conservez le numéro de ligne retourné par Add a Row : les mises à jour de cette route l’utiliseront.
+Sur Absent, ajoutez **Google Sheets > Add a Row** vers Dossiers. Mappez les six données utiles depuis Entrees, fixez statut à NOUVEAU et laissez les champs de proposition et d’accord vides. Juste après, ajoutez **Data store > Add/Replace a Record** : Key reçoit dossier_id et repere reçoit le même identifiant. Désactivez Overwrite an existing record : une clé déjà présente doit provoquer une erreur visible. N’activez pas un remplacement de ligne Sheets ; c’est une création. Conservez le numéro de ligne retourné par Add a Row (champ Row number, clé rowNumber dans la sortie brute). Search Rows utilise une autre clé, __ROW_NUMBER__ : mappez le champ du module concerné, pas celui d’un module différent. Ce numéro permet de viser la ligne ; les mises à jour de cette route l’utiliseront.
 
 Sur Présent, ajoutez **Google Sheets > Search Rows**, feuille Dossiers, filtre dossier_id égal à celui de l’événement. Limitez à deux résultats pour détecter une incohérence, non à un seul pour la masquer. Ajoutez immédiatement **Array aggregator**, avec Search Rows comme Source Module, aucune valeur Group by et l’option **Stop processing after an empty aggregation** désactivée. Incluez dans Aggregated fields le numéro de ligne et toutes les colonnes de Dossiers. L’agrégateur réunit les résultats dans une liste, y compris une liste vide ; les champs de la recherche doivent désormais être lus dans cette liste. Référence : https://help.make.com/aggregator.
 
@@ -117,7 +151,9 @@ Pour E-004, insérez temporairement, entre ces deux modules, un filtre qui refus
 
 Commencez avec **JSON > Parse JSON** et l’objet fixe du chapitre 4. Pour un dossier autre que SL-001, adaptez seulement dossier_id dans cet objet. La version reste prop-v1. Le but est de tester le routage et la validation sans appel d’IA facturé ; les modules restent comptés dans le quota Make.
 
-Lorsque ce palier fonctionne, insérez **OpenAI > Generate a completion** avant Parse JSON. Choisissez une connexion API autorisée, un modèle accessible compatible avec cette opération et une seule complétion. Dans Messages, placez les règles du chapitre 4 dans un message de rôle system, puis les données dans un message user. Choisissez le format JSON object. L’instruction doit demander explicitement du JSON. Ne renseignez aucun outil appelable.
+Lorsque ce palier fonctionne, insérez **OpenAI (ChatGPT, Whisper) > Simple text prompt** avant Parse JSON. La section « Un appel réel, puis un brouillon » ci-dessous donne la consigne, le mapping du champ Result et l’observation authentique. Cette variante consomme des crédits Make sans clé API personnelle. Elle ne propose pas ici de format JSON contraint : le parseur et les contrôles de structure restent indispensables. Ne connectez aucun outil d’envoi au modèle.
+
+Pour une configuration plus avancée avec votre propre connexion API, Generate a completion peut offrir des messages system/user et un format JSON object selon le modèle choisi. Il s’agit d’une autre configuration, dont les conditions et la facturation doivent être vérifiées dans votre compte ; ne transposez pas les champs de l’une à l’autre.
 
 Le message user contient uniquement dossier_id, objectif, faits, inconnus et la version attendue prop-v1. Mappez ces valeurs depuis l’événement contrôlé, jamais la feuille entière. **Ne mappez pas note** : E-006 et E-007 restent dans le registre d’entrée, hors de la demande envoyée. L’identifiant de brouillon, le destinataire et l’approbateur ne sont pas des sorties attendues du modèle.
 
@@ -177,7 +213,7 @@ Repartez d’un index et d’une feuille Dossiers vides pour cette série, mais 
 | E-008 | Résultat conforme et crédits réellement observés consignés, sans extrapolation prématurée |
 | E-009 après E-002 | Une seule ligne SL-002, reprise contrôlée vers A_RELIRE ; aucune seconde clé |
 
-**Vous avez réussi si** vous pouvez montrer les objets dans Sheets et Drive, expliquer les arrêts et retrouver l’événement dans Journal. Un dessin sans ces observations n’est pas la preuve recherchée. Les neuf cas du scénario A restent à exécuter dans votre copie ; les essais isolés de connexion et le scénario B ne les remplacent pas. Notez l’aide nécessaire : elle indique une amélioration à apporter au mode opératoire, pas une faute du lecteur.
+**Vous avez réussi si** vous pouvez montrer les objets dans Sheets et Drive, expliquer les arrêts et retrouver l’événement dans Journal. Un dessin sans ces observations n’est pas la preuve recherchée. Les modules décrits sont documentés ; les essais dans vos comptes, leurs permissions et leurs interfaces restent à exécuter. Notez l’aide nécessaire : elle indique une amélioration à apporter au mode opératoire, pas une faute du lecteur.
 
 ## Adapter les états à votre activité
 

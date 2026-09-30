@@ -1,5 +1,13 @@
 {
   "extends": "expo/tsconfig.base",
-  "compilerOptions": { "strict": true },
-  "include": ["App.tsx", "core.ts"]
+  "compilerOptions": {
+    "strict": true,
+    "types": ["node", "react"],
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "include": [
+    "App.tsx", "core.ts", "suivi.ts",
+    "core.test.ts", "suivi.test.ts", "edition.test.ts"
+  ]
 }

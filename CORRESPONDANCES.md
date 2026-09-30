@@ -1,6 +1,6 @@
 # Les mêmes principes, des objets différents
 
-Ressource de l’édition 2026, révision 0.13. La version de l’application demeure 1.0.0.
+Ressource de l’édition 2026, révision 0.15. La version de l’application demeure 1.0.0.
 
 Un changement de vocabulaire ne doit pas être pris pour un changement de méthode. Mais les termes ne sont pas tous des synonymes.
 

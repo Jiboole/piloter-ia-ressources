@@ -78,6 +78,11 @@ export default function App() {
       await AsyncStorage.setItem(KEY, encode(next));
       setEvents(next);
       setError('');
+      if (action === 'creer') {
+        setCommerce('');
+        setObjectif('');
+        setReason('');
+      }
     } catch (err) {
       setError(
         err instanceof Error

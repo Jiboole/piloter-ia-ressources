@@ -1,6 +1,12 @@
 # Errata et état des vérifications
 
-Édition 2026, révision courante **0.13 du 29 septembre 2026**, commune aux livres et aux ressources. Le numéro de l’application d’atelier reste **1.0.0**, identique dans `app.json` et `package.json`. Ces numéros identifient des objets différents : la révision des ressources et la version de l’application.
+Édition 2026, révision courante **0.15 du 30 septembre 2026**, commune aux livres et aux ressources. Le numéro de l’application d’atelier reste **1.0.0**, identique dans `app.json` et `package.json`. Ces numéros identifient des objets différents : la révision des ressources et la version de l’application.
+
+## Révision 0.15 : corrections de l’audit et nouvelle recette isolée
+
+Le sommaire, les renvois et les définitions sont harmonisés ; le QR ouvre directement le dépôt. Les compagnons intègrent la phrase-problème du tome 1, les neuf événements du tome 2 et la commande de tests du tome 3. TypeScript contrôle désormais l’application et les trois fichiers de tests ; les 22 tests passent. Après une création réussie, les champs de demande se vident sans effacer le nom de l’utilisateur.
+
+Les neuf événements, deux reprises et le passage au brouillon ont été exécutés le 30 septembre dans un laboratoire isolé **à JSON fourni**. Un dixième événement a réellement appelé OpenAI via **Simple text prompt**, analysé et enregistré sa réponse, puis créé un brouillon après accord fictif ; le second passage n’a rien recréé. Deux contre-épreuves au JSON fourni ont refusé deux textes et accepté trois textes. Les captures authentiques montrent le fallback et la réponse réelle. Voir la [preuve détaillée et ses limites](tome-02/SCENARIO_A_VERIFICATION.md). Ce module utilise les crédits Make sans clé personnelle ; la connexion API personnelle est une autre configuration. Aucun courriel envoyé.
 
 ## Révision 0.13 : essai du scénario B et captures
 
@@ -33,7 +39,7 @@ Le gain moyen de **15 %** du tome 1 est conservé après vérification de la pub
 
 ## Historique — corrections reprises du pack 0.11
 
-- Un atelier complet décrit l’assemblage du scénario A dans Make, ses branches et les huit cas à rejouer. Le module OpenAI et son raccordement à Parse JSON sont nommés. La construction est documentée ; son exécution dans un compte Make n’est pas déclarée acquise.
+- Un atelier complet décrit l’assemblage du scénario A dans Make, ses branches et les neuf événements à rejouer. Le module OpenAI et son raccordement à Parse JSON sont nommés. À cette révision historique, la construction était documentée sans recette complète ; la preuve d’exécution nouvelle figure en tête de ce document, à la révision 0.15.
 - Le brouillon Gmail utilise partout `gmail_draft_id` et la proposition `prop-v2`. Aucun envoi automatique n’est ajouté.
 - `suivi.ts`, `suivi.test.ts`, `edition.test.ts` et le README de l’application sont inclus dans le dépôt. Ils sont également joints au PDF de lecture du tome 3.
 - Les lignes des sources TypeScript imprimées ont été composées sans retour artificiel dans les chaînes, expressions ou attributs JSX. Le code complet des annexes et du chapitre de suivi reste identique aux fichiers fournis.
@@ -49,7 +55,7 @@ Environnement : Node.js 24.19.0, dépendances verrouillées du projet fourni.
 - Vérification TypeScript de l’application ; vérification séparée stricte du noyau et des fichiers de tests : réussies.
 - Code extrait des PDF : `core.ts`, `App.tsx`, `core.test.ts`, `suivi.ts`, `suivi.test.ts`, `edition.test.ts` et `tsconfig.json` identiques aux fichiers canoniques, hors lignes vides. Les vingt-deux tests exécutés sur cette extraction passent également.
 - Deux contre-épreuves sur copies isolées : suppression du garde-fou de révision ancienne et comptage des événements à la place des dossiers. Chacune est détectée par un échec. Après restauration : 22 tests réussis.
-- `expo export --platform all` : export JavaScript réussi pour Android (607 modules) et iOS (580 modules). **Ce ne sont pas des applications signées ni des essais sur téléphone.**
+- `expo export --platform all` : export JavaScript réussi pour Android et iOS. Le nombre de modules dépend de l’environnement et du graphe de dépendances ; il n’est pas un critère de recette. **Ce ne sont pas des applications signées ni des essais sur téléphone.**
 - QR des ressources et codes-barres des trois ISBN décodés ; sommaires et renvois contrôlés ; texte des éditions Lecture et KDP identique, hormis la couverture ajoutée au PDF de lecture.
 
 ## Ce qui reste à éprouver dans les conditions réelles

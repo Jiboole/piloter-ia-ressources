@@ -2,7 +2,7 @@
 
 Ressources pédagogiques de Jean-Baptiste Borgeais. Cas fictifs uniquement.
 
-**Édition 2026 — révision 0.13, clôturée le 29 septembre 2026.** Ce numéro identifie les livres et leurs ressources ; la version de l’application reste 1.0.0. Les laboratoires Make JSON, mapping, filtre et comparaison de dates, les connexions Google isolées et le scénario B ont été exécutés avec des données fictives. Le scénario A complet, la reprise après panne, les essais sur téléphone et les tests lecteurs restent à vérifier séparément.
+**Édition 2026 — révision 0.15, mise à jour le 30 septembre 2026.** Ce numéro identifie les livres et leurs ressources ; la version de l’application reste 1.0.0. Les laboratoires Make, les connexions Google, neuf événements du scénario A et deux reprises ont été exécutés avec des données fictives. Un passage supplémentaire avec une génération OpenAI réelle a été enregistré, relu, approuvé fictivement puis transformé en brouillon Gmail ; le second passage n’a créé aucun doublon. Aucun courriel envoyé. Les essais sur téléphone, les tests lecteurs et l’épreuve papier restent distincts de ces contrôles.
 
 ## Commencez ici
 
@@ -12,6 +12,7 @@ Vous n'avez pas besoin d'un compte GitHub pour consulter ces pages ou téléchar
 - [Tome 2 : organiser le circuit](tome-02/mon-circuit.md).
 - [Tome 2 : construire le scénario A, étape par étape](tome-02/ASSEMBLER_SCENARIO_A.md).
 - [Tome 2 : essai observé du scénario B](tome-02/SCENARIO_B_VERIFICATION.md).
+- [Tome 2 : essais observés, reprises et génération réelle jusqu’au brouillon](tome-02/SCENARIO_A_VERIFICATION.md).
 - [Tome 2 : premier laboratoire JSON, sans connexion externe](tome-02/LABORATOIRE_JSON.md).
 - [Tome 2 : les neuf événements et leurs résultats attendus](tome-02/CAS_LABORATOIRE.md).
 - [Tome 2 : blueprint du laboratoire mapping et filtre](tome-02/mapping-et-filtre.blueprint.json) — ce n’est pas le circuit A/B.
@@ -21,7 +22,7 @@ Vous n'avez pas besoin d'un compte GitHub pour consulter ces pages ou téléchar
 - [Retour lecteur, sans données personnelles](recette/RETOUR_LECTEUR.md).
 - [Errata et état des vérifications](ERRATA.md).
 
-Le [dossier Drive historique des lecteurs](https://drive.google.com/drive/folders/17Fktek7xY9orCV4_pN9sO3QTpcoAZ4Gk) reste la destination du QR code initial. Ses anciens modèles ne sont pas automatiquement compatibles avec chaque édition : vérifiez la version indiquée.
+Le [dossier Drive historique des lecteurs](https://drive.google.com/drive/folders/17Fktek7xY9orCV4_pN9sO3QTpcoAZ4Gk) était la destination du QR code des éditions initiales ; le QR de la révision 0.15 ouvre désormais le dépôt GitHub. Ses anciens modèles ne sont pas automatiquement compatibles avec chaque édition : vérifiez la version indiquée.
 
 ## Sécurité et limites
 
